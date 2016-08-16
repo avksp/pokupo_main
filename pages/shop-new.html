@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Славный Град</title>
+<!-- Начало кода активации магазина -->
+    <meta name="Pokupo.activationKey" content="03f1c15a222d8e288e3eeda35ae04ebc1f7f6526" />
+    <meta name="Pokupo.version" content="0.0.1.9" />
+<!-- Конец кода активации магазина -->
+</head>
+<body>
+<div class="main_pkp">
+<!-- Начало кода виджета магазина -->
+   <script src='https://server.pokupo.ru/dev/server/js/widgets/JSCore-1.3.min.js' type="text/javascript"></script>
+    <script type="text/javascript">
+        var pkpWHostTmpl = 'https://promodev.pokupo.ru/themes/';
+        var WParameters = {
+            core: {
+                shopId: 1,
+                imgLoader: '/images/loader_32px.gif',
+                host: 'server.pokupo.ru/dev/server/',
+                pathToData : 'dev/server/services/DataProxy.php?query=',
+                pathToPostData : 'services/DataPostProxy.php',
+                pathToTmpl: 'promodev.pokupo.ru/themes/',
+                hostApi : 'dev.pokupo.ru/api/',
+                hostPromo: 'https://promodev.pokupo.ru/',
+                theme: 'default',
+                themeFiles: {
+                    "default": {
+                     styles: ["styles/main_pkp.css", "themes/default/theme_pkp.css"],
+                     templates: !0}
+                },
+             },
+            buttonPayment: {
+                title: "Оплатить"
+            },
+            content: {
+                block: {
+                    container: {
+                        empty: { widget: 'tileBlockId' }
+                    }
+                }
+            },
+            cart: {
+                show:{title:"always",count:true,baseCost:true,finalCost:true,fullInfo:true}
+            },
+            favorites: {
+                show: ["infoShop", "addToCart", "buy"]
+            },
+            goods: {
+                show: ["selectionCount", "addToCart", "buy", "gallery", "shipping", "opinion", "favorites"]
+            },
+            userInformation: {
+                show: ["icon", "raiting"]
+            },
+            standalonePayment: {
+                showButton: false
+            }
+        }
+        PokupoWidgets.Init([
+            'all'
+        ],WParameters)
+    </script>
+    <section class="subheader_pkp subheader--min">
+        <div class="container_pkp">
+                <div id="shopInfoWidgetId"></div>
+            <div class="menu-login">
+                <div id="userInformationWidgetId" style="float: left"></div>
+                <div id="cartInfoWidgetId" style="float: left"></div>
+            </div>
+        </div>
+    </section>
+    <div id="authenticationWidgetId"></div>
+        <div id="searchWidgetId"></div>
+        <div id="advancedSearchFormWidgetId"></div>
+    <section class="store">
+        <div class="container_pkp">
+            <div id="catalogWidgetId"></div>
+            <div class="b-thermometer" id="breadCrumbsWidgetId_1"></div>
+            <div id="sliderBlockId"></div>
+            <div id="tileBlockId"></div>
+            <div id="carouselBlockId"></div>
+        </div>
+        <div id="menuPersonalCabinetWidgetId"></div>
+        <div class="container_pkp">
+            <div id="content"></div>
+        </div>
+    </section>
+<!-- Конец кода виджета магазина -->
+</div>
+</body>
+</html>

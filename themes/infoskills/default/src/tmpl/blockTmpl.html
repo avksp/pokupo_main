@@ -1,0 +1,80 @@
+<script id="blockSliderTmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="slider_theme">
+        <div class="catalog-slider" data-bind="css: cssBlockContainer">
+            <!-- ko foreach: contentBlock -->
+            <div data-bind="css: cssBlock, attr: {style: backgroundImage}" class="catalog-slider__slide">
+                <a href="" class="container catalog-slider__link"
+                   data-bind="click: ClickGoods, attr: {href: 'javascript:Routing.SetHash(\'goods\', \''+ chortName +'\', {id : '+ id +'})'}"></a>
+            </div>
+            <!-- /ko -->
+        </div>
+    </div>
+</script>
+
+<script id="blockBannerTmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="catalog-banner" data-bind="css: cssBlockContainer">
+        <!-- ko foreach: contentBlock -->
+        <div data-bind="css: cssBlock, attr: {style: backgroundImage}" class="catalog-banner__slide">
+            <a href="" class="container catalog-banner__link"
+               data-bind="click: ClickGoods, attr: {href: 'javascript:Routing.SetHash(\'goods\', \''+ chortName +'\', {id : '+ id +'})'}">
+            </a>
+        </div>
+        <!-- /ko -->
+    </div>
+</script>
+
+<script id="blockCaruselTmpl" type="text/html">
+    <!-- version 1.0-->
+</script>
+
+<script id="blockTileTmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="promoBlocks catalog-main">
+        <div class="promoBlocks-1 clearfix after_banner">
+            <!-- ko foreach: contentBlock -->
+            <div class="catalog-main__item i-proverka" data-bind="css: tileWeight">
+                <div class="catalog-item__cat">
+                    <a href="" data-bind="text: chortName, click: ClickGoods, attr: {id : cssTitleToCart, href: 'http://pokupo.ru/shop#/goods/id=' + id}">Книги</a>
+                </div>
+                <div class="catalog-item__img">
+                    <a href=""
+                       data-bind="click: ClickGoods, attr: {id : cssTitleToCart, href: 'http://pokupo.ru/shop#/goods/id=' + id}">
+                        <!-- ko if: routeImage() -->
+                          <span class="img-fon">
+                            <img src="" data-bind="attr: {src: routeImage(), title: chortName, id : cssToCart}">
+                          </span>
+                        <!-- /ko -->
+                        <span class="catalog-item__img-title" data-bind="text: chortName"></span>
+                    </a>
+                </div>
+                <div class="catalog-item__info">
+                    <div class="catalog-item__name">
+                        <a href=""
+                           data-bind="click: ClickGoods, attr: {id : cssTitleToCart, href: 'http://pokupo.ru/shop#/goods/id=' + id}">
+                            <span data-bind="text: chortName"></span>
+                        </a>
+                    </div>
+                    <div class="catalog-item__cost price_item">
+                        <span class="price__number" data-bind="text: sellCost"></span>
+                        <span class="price__thinsp">&nbsp;</span>
+                        <span class="price__rubl">руб.</span>
+                    </div>
+                    <a href="javascript:void(0);" class="btn catalog-item__bay-button" data-bind="click: ClickBuy">Купить</a>
+                    <a href="javascript:void(0);" class="catalog-item__bookmarks-button">В закладки</a>
+                </div>
+            </div>
+            <!-- /ko -->
+        </div>
+    </div>
+</script>
+<script id="blockNoResultsTmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="promoBlocks catalog-main">
+        <div class="promoBlocks carouselBlock b-catalog">
+            <h2 data-bind="text: titleBlock" class="b-catalog__title foremost"></h2>
+            <div>Для выбора товаров используйте рубрикатор магазина</div>
+        </div>
+    </div>
+</script>

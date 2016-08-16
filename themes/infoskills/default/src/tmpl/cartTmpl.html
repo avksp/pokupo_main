@@ -1,0 +1,53 @@
+<script id="cartTmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="cart-menu dropdown" style="">
+        <!-- ko if: ShowFullInfo() -->
+            <a id="cart_dropdown__trigger" href="javascript:void(0);" data-target="cart" class="with-icon icon__cart">
+                <!-- ko if: ShowTitle() -->
+                <span data-bind="text: title"></span>
+                <!-- /ko -->
+                <!-- ko if: ShowCount() --><!-- ko if: count() > 0 --><sup class="circles-menu__num" data-bind="text: count"></sup><!-- /ko --><!-- /ko -->
+            </a>
+            <!-- ko if: goods().length > 0 -->
+                <div id="cart_dropdown__content" data-target="cart" class="cart-menu dropdown__content hidden">
+                    <div class="cart-menu__body">
+                        <!-- ko foreach: goods -->
+                        <ol class="b-cart-menu__goods">
+                            <li class="cart-menu__goods-item order-item">
+                                <div class="order-item__img">
+                                    <img src="" title="Рисование. Полное руководство" data-bind="attr: {src: routeImages, alt: fullName}">
+                                </div>
+                                <div class="order-item__name"><span data-bind="text: fullName"></span>
+                                </div>
+                                <div class="order-item__cost price_item"><span class="price__number" data-bind="text: sellEndCost"></span><span
+                                        class="price__thinsp">&nbsp;</span><span class="price__rubl">руб.</span>
+                                </div>
+                                <div class="order-item__drop" data-bind="click: ClickRemove"></div>
+                            </li>
+                        </ol>
+                        <!-- /ko -->
+                        <a href="" class="cart-menu__cart-button" data-bind="click: ClickCart">В корзину</a>
+                        <!-- ko if: ShowFinalCost() -->
+                            <!-- ko if: ShowBaseCost() -->
+                                <a href="" class="btn cart-menu__order-button" data-bind="click: ClickCart">
+                                    <p class="cart-menu__results">Купить за <span
+                                            class="cart-menu__amount price_items"><span class="price__number" data-bind="text: finalCost"></span><span
+                                            class="price__thinsp">&nbsp;</span><span
+                                            class="price__rubl">РУБ.</span></span></p>
+                                </a>
+                            <!-- /ko -->
+                        <!-- /ko -->
+                    </div>
+                </div>
+            <!-- /ko -->
+        <!-- /ko -->
+        <!-- ko ifnot: ShowFullInfo() -->
+            <a id="cart_dropdown__trigger" href="javascript:void(0);" data-target="cart" class="with-icon icon__cart" data-bind="click: ClickCart">
+                <!-- ko if: ShowTitle() -->
+                <span data-bind="text: title"></span>
+                <!-- /ko -->
+                <!-- ko if: ShowCount() --><!-- ko if: count() > 0 --><sup class="circles-menu__num" data-bind="text: count"></sup><!-- /ko --><!-- /ko -->
+            </a>
+        <!-- /ko -->
+    </div>
+</script>

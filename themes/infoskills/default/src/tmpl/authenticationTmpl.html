@@ -1,0 +1,30 @@
+
+<script id="authenticationFormTmpl" type="text/html">
+  <!-- version 1.0-->
+  <div class="fade in">
+    <div class="popup signin">
+      <div class="popup-head">
+        <h3>Вход в личный кабинет</h3>
+      </div>
+      <div class="popup-content">
+        <form class="popup-content__form" method="post" action="" data-bind="submit: Login">
+          <input name="username" type="text" placeholder="Логин (эл. почта)" required="required" class="inline-input" data-bind="value: username">
+          <div class="error__message">
+            <p data-bind="text: error"></p>
+          </div>
+          <input name="password" type="password" placeholder="Пароль" class="inline-input" data-bind="value: password">
+          <div class="popup-content__form__remember">
+            <input class="i-checkbox hidden" id="remember" type="checkbox" data-bind="value: rememberMe">
+            <label for="remember">Запомнить</label>
+          </div>
+          <a href="popup-reset-password.html">Забыли пароль?</a>
+          <div class="popup-content__buttons">
+            <button type="submit" class="btn popup-content__btn-enter black">войти</button>
+            <a href="" class="btn popup-content__btn-reg blue" data-bind="click: ClickSimpleRegistration">зарегистрироваться</a>
+          </div>
+        </form>
+        <div class="popup__drop"><a href="javascript:void(0);" class="i-drops" data-bind="click: CloseForm"></a></div>
+      </div>
+    </div>
+  </div>
+</script>

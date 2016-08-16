@@ -1,0 +1,308 @@
+<script id="orderListTmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="profile_theme">
+        <!-- profile header -->
+        <div class="profile-header">
+            <h1 class="profile-header__item">Мои покупки</h1>
+        </div>
+        <!-- /profile header -->
+        <!-- purchases-profile -->
+        <div class="purchases-container">
+            <!-- ko foreach: list -->
+                <!-- ko foreach: goods -->
+                    <div class="catalog-item">
+                        <div class="catalog-item__img">
+                            <a href="store-item.html">
+                                <span class="img-fon">
+                                    <img src="" title="" data-bind="attr: {title: fullName, src: routeImage}">
+                                </span>
+                                <span class="catalog-item__img-title" data-bind="text: fullName"></span>
+                            </a>
+                        </div>
+                        <div class="catalog-item__info">
+                            <div class="catalog-item__name"><a href="" data-bind="click: ClickItem"><span data-bind="text: fullName"></span></a>
+                            </div>
+                            <div class="catalog-item__cost price_item"><span class="price__number" data-bind="text: sellCost"></span><span
+                                    class="price__thinsp">&nbsp;</span><span class="price__rubl">руб.</span></div>
+                            <a href="javascript:void(0);" class="btn catalog-item__bay-button">Скачать</a>
+                            <a href="javascript:void(0);" class="catalog-item__open-button i-open" data-bind="click: ClickItem">Открыть</a>
+                        </div>
+                    </div>
+                <!-- /ko -->
+            <!-- /ko -->
+        </div>
+
+        <!-- ko if: paging().length > 1 -->
+        <!-- ko template: {name: "orderListPagenationTmpl"} --><!-- /ko -->
+        <!-- /ko -->
+    </div>
+</script>
+
+<script id="orderListPagenationTmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="pagination_theme">
+        <ul class="pagination_list">
+            <!-- ko foreach: paging -->
+                <!-- ko if: current -->
+                    <!-- ko if: title == '...' -->
+                    <li class="pagination_list__item dots">...</li>
+                    <!-- /ko -->
+                    <!-- ko ifnot: title == '...' -->
+                    <li class="pagination_list__item"><a href="javascript:void(0);" data-bind="text: title, click: ClickLinkPage"></a></li>
+                    <!-- /ko -->
+                <!-- /ko -->
+                <!-- ko ifnot: current -->
+                    <!-- ko if: cssLink() == "first" -->
+                    <li class="pagination_list__item arrow-left"><a href="javascript:void(0);" data-bind="click: ClickLinkPage"></a></li>
+                    <!-- /ko -->
+                    <!-- ko if: cssLink() == "last" -->
+                    <li class="pagination_list__item arrow-right"><a href="javascript:void(0);" data-bind="click: ClickLinkPage"></a></li>
+                    <!-- /ko -->
+                    <!-- ko if: cssLink() != "last" && cssLink() != "first" -->
+                    <li class="pagination_list__item"><a href="javascript:void(0);" data-bind="text: title, click: ClickLinkPage"></a></li>
+                    <!-- /ko -->
+                <!-- /ko -->
+            <!-- /ko -->
+        </ul>
+    </div>
+</script>
+<script id="orderEmptyListTmpl" type="text/html">
+    <!-- version 1.0 -->
+    <div class="profile_theme">
+        <!-- profile header -->
+        <div class="profile-header">
+            <h1 class="profile-header__item">Мои покупки</h1>
+        </div>
+        <!-- /profile header -->
+        <!-- purchases-profile -->
+        <div class="purchases-container">
+            <p>У вас нет ни одной покупки.</p>
+        </div>
+    </div>
+</script>
+<script id="orderDetailTmpl" type="text/html">
+    <!-- version 1.1 -->
+    <div class="content_theme">
+        <!-- payment widget -->
+        <div id="pkp-container">
+            <h1 class="pkp-title pkp-title_big title_page_theme">Заказ № <!-- ko text: id -->
+                <!-- /ko --> от
+                <!-- ko text: dateCreate -->
+                <!-- /ko --></h1>
+
+            <div class="pkp-payment-method__item current">
+                <div class="pkp-tooltip-payment-method">
+                    <div class="pkp-tooltip">
+                        <span class="pkp-tooltip__trigger">?</span>
+
+                        <div class="pkp-tooltip__content">
+                            <h6 class="pkp-tooltip__title" ><!-- ko text: namePayment--><!-- /ko--></h6>
+                            <p data-bind="html :descPayment"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="pkp-payment-method__content">
+                    <div class="pkp-payment-method__image">
+                        <img src="" alt="" data-bind="attr: {src: logoPayment}">
+                    </div>
+                    <div class="pkp-payment-method__info">
+                        <span class="pkp-span">Скорость: <strong><!-- ko text: timePayment--><!-- /ko--></strong></span>
+                        <span class="pkp-span">Комиссия: <strong><!-- ko text: costPayment--><!-- /ko --> руб.</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pmt-sum">
+                <span>Продавец:</span>
+                <span data-bind="text: nameOwnShop"></span>
+            </div>
+
+            <div class="pmt-sum">
+                <span>Статус:</span>
+                <!-- ko if: statusOrder() == 'init' -->
+                <span>Формируется</span>
+                <!-- /ko -->
+                <!-- ko if: statusOrder() == 'new' -->
+                <span>Новый</span>
+                <!-- /ko -->
+                <!-- ko if: statusOrder() == 'process' -->
+                <span>В просессе обработки</span>
+                <!-- /ko -->
+                <!-- ko if: statusOrder() == 'cancel' -->
+                <span>Отменён</span>
+                <!-- /ko -->
+                <!-- ko if: statusOrder() == 'send' -->
+                <span>Отправлен</span>
+                <!-- /ko -->
+                <!-- ko if: statusOrder() == 'delivered' -->
+                <span>Получен покупателем</span>
+                <!-- /ko -->
+                <!-- ko if: statusPay() == 'wait_check' -->
+                <span>На проверке</span>
+                <!-- /ko -->
+                <!-- ko if: statusPay() == 'wait_pay' -->
+                <span>Ожидает оплаты</span>
+                <!-- /ko -->
+                <!-- ko if: statusPay() == 'paid' -->
+                <span>Оплачен</span>
+                <!-- /ko -->
+                <!-- ko if: statusPay() == 'cancel' -->
+                <span>Отменён</span>
+                <!-- /ko -->
+                <!-- ko if: statusPay() == 'back' -->
+                <span>Возвращён</span>
+                <!-- /ko -->
+            </div>
+
+            <!-- ko if: discount -->
+            <div class="pmt-sum">
+                <span>Скидка: <i><!-- ko text: discount--><!-- /ko--></i></span>
+                <span><!-- ko text: discountSum--><!-- /ko --> р.</span>
+            </div>
+            <!-- /ko -->
+            <!-- ko if: realShipping -->
+            <div class="pmt-sum">
+                <span>Доставка: <i><!-- ko text: nameMethodShipping--><!-- /ko--></i></span>
+                <span><!-- ko text: costShipping--><!-- /ko --> р.</span>
+            </div>
+            <!-- /ko -->
+            <div class="pmt-sum">
+                <span>Способ оплаты: <i><!-- ko text: namePayment--><!-- /ko--></i></span>
+                <span><!-- ko text: costPayment--><!-- /ko --> р.</span>
+            </div>
+            <div class="pmt-sum">
+                <span>Сумма счета:</span>
+                <span><!-- ko text: itog()--><!-- /ko --> р.</span>
+            </div>
+
+            <!-- ko if: commentBuyer() -->
+            <div class="pmt-sum">
+                <span>Примечания пользователя к заказу:</span>
+                <span data-bind="text: commentBuyer()"></span>
+            </div>
+            <!-- /ko -->
+
+            <!-- ko if: commentOperator() -->
+            <div class="pmt-sum">
+                <span>Примечания оператора к заказу:</span>
+                <span data-bind="text: commentOperator()"></span>
+            </div>
+            <!-- /ko -->
+
+            <div class="pmt-sum"><span>Товары</span></div>
+            <div class="cart-container">
+                <div class="cart-head">
+                    <span class="cart-head__img"></span>
+                    <span class="cart-head__title">Наименование</span>
+                    <span class="cart-head__price">Цена</span>
+                    <span class="cart-head__added">Количество</span>
+                    <span class="cart-head__price">Сумма</span>
+                </div>
+                <div class="cart-body">
+                    <!-- ko foreach: goods -->
+                    <div class="cart-item">
+                        <div class="cart-item__img">
+                            <span class="img-fon"><img src="" data-bind="attr: {src: routeImage}"></span>
+                        </div>
+                        <div class="cart-item__title">
+                            <a href="javascript:void(0);" data-bind="click: ClickGoods"><span data-bind="text: fullName"></span></a>
+                            <!-- ko if: isEgoodsPaid() -->
+                            <!-- ko foreach: EGoods -->
+                            <div class="b-order-table__info">
+                                <p class="b-order-table__label">
+                                    Скачиваний <b><!-- ko text: countUpload --><!-- /ko --></b> из <b><!-- ko text: maxUpload --><!-- /ko --></b>
+                                    <!-- ko if: expiration -->
+                                    , доступно до <!-- ko text: expiration -->
+                                    <!-- /ko -->
+                                    <!-- /ko -->
+                                </p><a data-bind="attr: {href: uploadFile}" class="btn btn-sm">Загрузить</a>
+                                <span><!-- ko text: sizeFile --><!-- /ko --></span>
+                            </div>
+                            <!-- /ko -->
+                            <!-- /ko -->
+                        </div>
+                        <div class="cart-item__price"><span data-bind="text: sellCost"></span> р.</div>
+                        <div class="cart-item__added"><span data-bind="text: count"></span></div>
+                        <div class="cart-item__price"><span data-bind="text: itogSellCost">0</span></div>
+                    </div>
+                    <!-- /ko -->
+                </div>
+            </div>
+
+            <!-- ko if: realShipping -->
+            <div class="pmt-sum"><span>Доставка</span></div>
+            <div class="cart-container">
+                <div class="cart-head">
+                    <span class="cart-head__img"></span>
+                    <span class="">Компания</span>
+                    <span class="cart-head__title">Адрес</span>
+                    <span class="cart-head__added">Получатель</span>
+                    <span class="cart-head__price">Телефон</span>
+                </div>
+                <div class="cart-body">
+                    <div class="cart-item">
+                        <div class="cart-item__img">
+                            <span class="img-fon"><img src="" data-bind="attr: {src: logoMethodShipping}"></span>
+                        </div>
+                        <div class="">
+                            <!-- ko text: nameMethodShipping-->
+                            <!-- /ko-->
+                        </div>
+                        <div class="cart-item__title">
+                            <!-- ko text: shippingPostCode-->
+                            <!-- /ko-->,
+                            <!-- ko text: shippingCountry-->
+                            <!-- /ko-->,
+                            <!-- ko text: shippingRegion-->
+                            <!-- /ko-->,<br/>
+                            <!-- ko text: shippingCity-->
+                            <!-- /ko-->,
+                            <!-- ko text: shippingAddress-->
+                            <!-- /ko-->
+                        </div>
+                        <div class="cart-item__added"><span data-bind="text: shippingAddressee"></span></div>
+                        <div class="cart-item__price"><span data-bind="text: shippingContactPhone"></span></div>
+                    </div>
+                </div>
+            </div>
+            <!-- /ko -->
+
+            <div class="pkp-btn-group">
+                <div>
+                    <!-- ko if: statusOrder() == "init" -->
+                        <a class="pkp-btn pkp-btn_back" data-bind="click: ClickCheck">Подтвердить заказ</a>
+                        <a class="pkp-btn pkp-btn_back" data-bind="click: ClickEdit">Изменить</a>
+                        <a class="pkp-btn pkp-btn_back" data-bind="click: ClickReturn">В корзину</a>
+                        <a class="pkp-btn pkp-btn_back" data-bind="click: ClickCancel">Отменить</a>
+                        <a class="pkp-btn pkp-btn_back" data-bind="click: ClickDelete">Удалить</a>
+                        <!-- ko if: statusPay() == 'wait_pay' -->
+                            <a class="pkp-btn pkp-btn_pay" data-bind="click: ClickRefresh">Обновить</a>
+                        <!-- /ko -->
+                    <!-- /ko -->
+                    <!-- ko if: statusOrder() == "new" -->
+                        <!-- ko ifnot: statusPay() == "paid" -->
+                                <!-- ko ifnot: statusPay() == "wait_check" -->
+                                    <div style="display: inline;" data-bind="embedWidget :{ widget : 'buttonPayment', params : { title: 'Оплатить заказ', orderId: id()}}"></div>
+                                <!-- /ko -->
+                                <a class="pkp-btn pkp-btn_back" data-bind="click: ClickCancel">Отменить</a>
+                                <a class="pkp-btn pkp-btn_back" title="Обновить" data-bind="click: ClickRefresh">Обновить</a>
+                        <!-- /ko -->
+                    <!-- /ko -->
+                    <!-- ko if: statusOrder() == "cancel" -->
+                        <a class="pkp-btn pkp-btn_back" data-bind="click: ClickRepeat">Повторить</a>
+                        <a class="pkp-btn pkp-btn_back" data-bind="click: ClickDelete">Удалить</a>
+                        <!-- ko if: statusPay() == 'wait_pay' -->
+                            <a class="pkp-btn pkp-btn_pay" title="Обновить" data-bind="click: ClickRefresh">Обновить</a>
+                        <!-- /ko -->
+                    <!-- /ko -->
+                    <!-- ko if: statusOrder() == "delivered" || statusOrder() == "send" -->
+                        <a class="pkp-btn pkp-btn_back" data-bind="click: ClickRepeat">Повторить</a>
+                        <!-- ko if: statusPay() == 'wait_pay' -->
+                            <a class="pkp-btn pkp-btn_pay" title="Обновить" data-bind="click: ClickRefresh">Обновить</a>
+                        <!-- /ko -->
+                    <!-- /ko -->
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

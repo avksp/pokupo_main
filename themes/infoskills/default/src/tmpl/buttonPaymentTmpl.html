@@ -1,0 +1,147 @@
+<script id="buttonPaymentImpl" type="text/html">
+    <!-- version 1.0-->
+    <a class="pkp-btn pkp-btn_pay" data-bind="click: ClickPay, text: title"></a>
+</script>
+<script id="paymentPageTmpl" type="text/html">
+    <!-- version 1.0 -->
+    <div class="content_theme">
+        <label id="pkp-container">
+            <h1 class="pkp-title pkp-title_big title_page_theme">Оплата заказа</h1>
+
+            <!-- ko foreach: outData -->
+            <div class="pmt-sum">
+                <span data-bind="text: label"></span>
+                <span><!-- ko text: value --><!-- /ko --></span>
+            </div>
+            <!-- /ko -->
+
+            <!-- ko if: instruction -->
+            <div class="pmt-message">
+                <input class="pmt-message__btn hidden" id="message-click" type="checkbox">
+                <label class="pmt-message__label" for="message-click"><span>Инструкция для плательщика</span></label>
+                <div class="pmt-message__text instruction" data-bind="html: instruction, attr: {id: cssInstruction }"></div>
+                <a class="pmt-message__print" data-bind="click: ClickPrintInstruction"><span>Распечатать</span></a>
+            </div>
+            <!-- /ko -->
+
+            <!-- ko if: isInData() -->
+            <form class="pkp-receipt-form" data-bind="attr: {id: cssInDataForm}, submit: ClickSubmit" method="POST"
+                  enctype="multipart/form-data">
+                <!-- ko foreach: inData -->
+
+                <!-- ko if: typeField() == "hidden" -->
+                <!--  ko template: { name: 'standalonePaymentTextFieldTmpl' } --><!-- /ko -->
+                <!-- /ko -->
+
+                <!-- ko ifnot: typeField() == "hidden" -->
+                <label class="pkp-form__label">
+                    <span class="pkp-span_required" data-bind="text: label()"></span>
+                    <!-- ko if: error() -->
+                    <span class="pkp-error-msg" style="display: inline" data-bind="text: error()"></span>
+                    <!-- /ko -->
+                    <!-- ko if: typeField() == "select" -->
+                    <!--  ko template: { name: 'standalonePaymentSelectFieldTmpl' } --><!-- /ko -->
+                    <!-- /ko -->
+                    <!-- ko if: typeField() == "text" || typeField() == "password" -->
+                    <!--  ko template: { name: 'standalonePaymentTextFieldTmpl' } --><!-- /ko -->
+                    <!-- /ko -->
+                    <!-- ko if: typeField() == "textarea" -->
+                    <!--  ko template: { name: 'standalonePaymentTextareaFieldTmpl' } --><!-- /ko -->
+                    <!-- /ko -->
+                    <!-- ko if: typeField() == "checkbox" -->
+                    <!--  ko template: { name: 'standalonePaymentCheckboxFieldTmpl' } --><!-- /ko -->
+                    <!-- /ko -->
+                    <!-- ko if: typeField() == "radio" -->
+                    <!--  ko template: { name: 'standalonePaymentRadioFieldTmpl' } --><!-- /ko -->
+                    <!-- /ko -->
+                </label>
+                <!-- /ko -->
+                <!-- /ko -->
+            </form>
+            <!-- /ko -->
+            <!-- ko if: urlInvoice() -->
+            <div class="b-invoice__block">
+                <h2 class="b-invoice__title">Квитанция для оплаты</h2>
+                <div>
+                    <img src="" data-bind="attr: {id: cssInvoice, src: urlInvoice}">
+                </div>
+                <div class="print-button">
+                    <span class="pseudo-link" data-bind="click: ClickPrintInvoice">Распечатать квитанцию</span>
+                </div>
+            </div>
+            <!-- /ko -->
+
+            <!-- ko if: !isPayForm() && isInData() -->
+            <div class="pkp-btns-holder">
+                <a class="pkp-btn pkp-btn_back" data-bind="click: Back">Назад</a>
+                <button class="pkp-btn pkp-btn_get-receipt" data-bind="click: ClickSubmit">Обновить</button>
+            </div>
+            <!-- /ko -->
+
+            <!-- ko if: !isPayForm() && !isInData() -->
+            <div class="pkp-btns-holder">
+                <a class="pkp-btn pkp-btn_back" data-bind="click: Back">Назад</a>
+                <button class="pkp-btn pkp-btn_get-receipt" data-bind="click: ClickRefresh">Обновить</button>
+            </div>
+            <!-- /ko -->
+
+
+            <!-- ko if: isPayForm() -->
+            <div class="pkp-btns-holder">
+                <div>
+                    <!-- ko with: payForm -->
+                    <form action="" method=""
+                          data-bind="attr: {method: method, action: action, target: target, id: cssPayForm}">
+                        <!-- ko foreach: field -->
+                        <input type="hidden" name="" data-bind="value: value, attr: {name: name}"/>
+                        <!-- /ko -->
+                    </form>
+                    <!-- /ko -->
+                </div>
+                <div class="pkp-btn-group">
+                <a class="pkp-btn pkp-btn_back" data-bind="click: Back">Назад</a><a class="pkp-btn pkp-btn_pay" data-bind="click: ClickPay, text: title"></a>
+                </div>
+            </div>
+            <!-- /ko -->
+        </div>
+    </div>
+</script>
+<script id="paymentSelectFieldTmpl" type="text/html">
+    <!-- version 1.0-->
+    <select name="" data-bind="attr: { name: name(), placeholder: label()}"  class="pkp-input j-pkp-req-input" ><!-- ko foreach: listSelect() -->
+        <!-- ko if: value == $parent.value() -->
+        <option value="" data-bind="value: value, text: label" selected="selected"></option><!-- /ko -->
+        <!-- ko ifnot: value == $parent.value() -->
+        <option value="" data-bind="value: value, text: label"></option><!-- /ko --><!-- /ko -->
+    </select>
+</script>
+<script id="paymentTextFieldTmpl" type="text/html">
+    <!-- version 1.0-->
+    <input type="text" value=""
+           data-bind="value: value, attr: {type: typeField(), name: name(), id: cssField(), placeholder: label()}"
+           class="pkp-input j-pkp-req-input" />
+</script>
+<script id="paymentTextareaFieldTmpl" type="text/html">
+    <!-- version 1.0-->
+    <textarea name="" data-bind="attr: {name: name()}, text: value, placeholder: label()"
+              class="pkp-input j-pkp-req-input" ></textarea>
+</script>
+<script id="paymentCheckboxFieldTmpl" type="text/html">
+    <!-- version 1.0--><!-- ko if: listSelect().length > 0 --><!-- ko foreach: listSelect --><!-- ko if: value == $parent.value() -->
+    <input type="checkbox" checked="checked" name="" value="" data-bind="value: value, attr: { name: $parent.name()}"
+           class="checkbox"/><!-- /ko --><!-- ko ifnot: value == $parent.value() -->
+    <input type="checkbox" name="" value="" data-bind="value: value, attr: { name: $parent.name()}"
+           class="checkbox"/><!-- /ko -->
+    <label for="" data-bind="text: $parent.label(), attr: { 'for': $parent.name()}"
+           class="block-label b-small-text"></label><!-- /ko --><!-- /ko --><!-- ko if: listSelect().length == 0 -->
+    <input type="checkbox" name="" value="" data-bind="value: value(), attr: { name: name()}" class="checkbox"/>
+    <label for="" data-bind="text: label(), attr: {'for': name()}" class="block-label b-small-text"></label><!-- /ko -->
+</script>
+<script id="paymentRadioFieldTmpl" type="text/html">
+    <!-- version 1.0--><!-- ko foreach: listSelect --><!-- ko if: value == $parent.value() -->
+    <input type="radio" checked="checked" name="" value="" data-bind="value: value, attr: { name: $parent.name()}"
+           class="inline"/><!-- /ko --><!-- ko ifnot: value == $parent.value() -->
+    <input type="radio" name="" value="" data-bind="value: value, attr: { name: $parent.name()}"
+           class="inline"/><!-- /ko -->
+    <label for="" data-bind="text: $parent.label(), attr: { 'for': $parent.name()}"></label><!-- /ko -->
+</script>

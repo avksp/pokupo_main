@@ -1,0 +1,38 @@
+<script id="catalogTmpl" type="text/html">
+    <!-- version 1.0-->
+    <!--<input class="btn-menu-click-mobile hidden" id="menu-click-mobile" type="checkbox">-->
+    <label for="menu-click-mobile"></label>
+    <!-- main-menu -->
+    <div class="main-menu_theme">
+        <!-- version 2.0-->
+        <nav class="menu-click" style="">
+            <input class="btn-menu-click hidden" id="menu-click" type="checkbox" data-target="menu-click-list">
+            <label for="menu-click">меню</label>
+            <div data-target="menu-click-list" class="menu-click-dropdown hidden">
+                <div class="section_theme">
+
+                    <!-- ko foreach: tab -->
+                    <ul class="menu-click-list">
+                        <!-- ko foreach: children -->
+                            <li class="menu__item with-submenu menuparent">
+                                <a href="" data-bind="click: ClickItem">
+                                    <span data-bind="html: title"></span>
+                                </a>
+                                <ul class="submenu">
+                                    <!-- ko foreach: children -->
+                                    <li class="submenu__item">
+                                        <a href="" data-bind="click: ClickItem">
+                                            <span data-bind="html: title"></span>
+                                        </a>
+                                    </li>
+                                    <!-- /ko -->
+                                </ul>
+                            </li>
+                        <!-- /ko -->
+                    </ul>
+                    <!-- /ko -->
+                </div>
+            </div>
+        </nav>
+    </div>
+</script>

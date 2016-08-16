@@ -1,0 +1,51 @@
+<script id="registrationSimpleTmpl" type="text/html">
+    <!-- version 1.0 -->
+    <div class="fade in">
+        <div class="popup join">
+            <div class="popup-head">
+                <h3>Регистрация на INFOSKILLS</h3>
+            </div>
+            <div class="popup-content">
+                <form class="popup-content__form">
+                    <div class="floatlabel-wrapper" style="position:relative">
+                        <!-- ko if: errorEmail() -->
+                        <div class="error__message">
+                            <p data-bind="html: errorEmail"></p>
+                        </div>
+                        <!-- /ko -->
+                        <input
+                                data-bind="value: email"
+                                name="email" type="email"
+                               placeholder="Email"
+                               required="required"
+                               class="inline-input" id="i-27"
+                               style="padding-top: 5px; transition: all 0.1s ease-in-out;">
+                        <label for="27" class="label-floatlabel"
+                                style="position: absolute; bottom: 0px; left: 20px; display: none; opacity: 0; font-size: 12px; line-height: 16px; height: 16px; font-weight: normal; color: rgba(0, 0, 0, 0.4); transition: all 0.1s ease-in-out;">Email</label>
+                    </div>
+                    <div class="popup-content__form__desc">
+                        <p>Пароль создается автоматически, и будет отправлен на ваш email</p>
+                    </div>
+                    <div class="popup-content__buttons">
+                        <button type="submit" class="btn popup-content__btn-enter black" data-bind="click: Submit">зарегистрироваться</button>
+                        <button type="reset" class="btn popup-content__btn-cencel blue" data-bind="click: Back">отмена</button>
+                    </div>
+                </form>
+                <div class="popup__drop"><a href="javascript:void(0);" class="i-drops" data-bind="click: ClickClose"></a></div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="registrationFormStep1Tmpl" type="text/html">
+    <!-- version 1.0 -->
+</script>
+<script id="registrationFormStep2Tmpl" type="text/html">
+    <!-- version 1.0 -->
+</script>
+<script id="registrationFormStep3Tmpl" type="text/html">
+    <!-- version 1.0 -->
+</script>
+<script id="registrationFormStep4Tmpl" type="text/html">
+    <!-- version 1.0 -->
+</script>

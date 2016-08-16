@@ -1,0 +1,262 @@
+<script id="personalInformationTmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="profile_theme" data-bind="if: isEditBlock() == 0">
+        <!-- profile header -->
+        <div class="profile-header">
+            <h1 class="profile-header__item">Личный кабинет</h1>
+        </div>
+        <!-- /profile header -->
+        <!-- profile info -->
+        <div class="profile-info">
+            <div class="profile-info__name">
+                <span class="profile-info__name-label">Имя:</span><span class="profile-info__name-data"
+                                                                        data-bind="text: registrationData.username"></span>
+            </div>
+            <div class="profile-info__email">
+                <span class="profile-info__email-label">Почта:</span><span class="profile-info__email-data"
+                                                                           data-bind="text: contacts.email"></span>
+            </div>
+            <div class="profile-info__tel">
+                <span class="profile-info__tel-label">Телефон:</span><span class="profile-info__tel-data"
+                                                                           data-bind="text: contacts.phone"></span>
+            </div>
+            <div class="profile-info__adress">
+                <span class="profile-info__adress-label">Адрес:</span>
+                <span class="profile-info__adress-data">
+                    <!-- ko if: postalAddress.postIndexText() -->
+                    <span data-bind="text: postalAddress.postIndexText() + ', '"></span>
+                    <!-- /ko -->
+                    <!-- ko if: postalAddress.countryText() -->
+                    <span data-bind="text: postalAddress.countryText() + ', '"></span>
+                    <!-- /ko -->
+                    <!-- ko if: postalAddress.regionText() -->
+                    <span data-bind="text: postalAddress.regionText() + ', '"></span>
+                    <!-- /ko -->
+                    <!-- ko if: postalAddress.cityText() -->
+                    <span data-bind="text: postalAddress.cityText() + ', '"></span>
+                    <!-- /ko -->
+                    <!-- ko if: postalAddress.addressText() -->
+                    <span data-bind="text: postalAddress.addressText()"></span>
+                    <!-- /ko -->
+                </span>
+            </div>
+            <div class="profile-info__buttons">
+                <a href="" class="i-change" data-bind="click: Edit">Редактировать данные</a>
+                <a href="" class="i-pass"
+                   data-bind="click: function(){Routing.SetHash('profile', 'Личный кабинет', {info: 'security'})}">Сменить
+                    пароль</a>
+            </div>
+        </div>
+        <!-- /profile info -->
+    </div>
+    <div class="profile_theme"  data-bind="if: isEditBlock() == 1">
+        <div class="profile-info">
+            <!-- profile header -->
+            <div class="profile-header">
+                <h1 class="profile-header__item">Редакировать данные</h1>
+            </div>
+            <!-- /profile header -->
+            <!-- profile info edit -->
+            <div class="profile-info-edit">
+                <!-- ko template: { name: 'registrationDataTmpl', data: registrationData }--><!-- /ko-->
+                <!-- ko template: { name: 'contactsDataFormTmpl', data: contacts }--><!-- /ko-->
+                <!-- ko template: { name: 'postDataTmpl', data: postalAddress }--><!-- /ko-->
+            </div>
+        </div>
+    </div>
+</script>
+
+
+<script id="registrationDataTmpl" type="text/html">
+    <!-- version 1.0-->
+    <form class="profile-info-edit__form" data-bind="attr: {id: cssRegistrationDataForm}" method="POST" target="upload_target" enctype="multipart/form-data">
+        <label>Фамилия</label>
+        <input type="text" placeholder="Фамилия" name="sname" data-bind="value: lastNameField" class="profile-info-edit__form-input">
+        <!-- ko if: errorLastName -->
+        <div class="error__message">
+            <p data-bind="text: errorLastName"></p>
+        </div>
+        <!-- /ko -->
+        <label>Имя</label>
+        <input type="text" placeholder="Имя" name="fname" data-bind="value: firstNameField" class="profile-info-edit__form-input">
+        <!-- ko if: errorLastName -->
+        <div class="error__message">
+            <p data-bind="text: errorFirstName"></p>
+        </div>
+        <!-- /ko -->
+        <label>Отчество</label>
+        <input type="text" placeholder="Отчество" name="mname" data-bind="value: middleNameField" class="profile-info-edit__form-input">
+        <!-- ko if: errorLastName -->
+        <div class="error__message">
+            <p data-bind="text: errorFirstName"></p>
+        </div>
+        <!-- /ko -->
+        <label>Дата рождения</label>
+        <input id="birthDay" type="text" placeholder="Дата рождения" data-bind="value: birthDayField, attr: {id: cssBirthDay}" class="profile-info-edit__form-input">
+        <input name="bdate" type="hidden" data-bind="value: birthDayHiddenField"/><!-- ko if: errorBirthDay -->
+        <div class="error__message">
+            <p data-bind="text: errorBirthDay"></p>
+        </div><!-- /ko -->
+
+        <button type="submit" class="btn profile-info-edit__form-sub" data-bind="click: Submit">сохранить</button><button type="reset" class="btn profile-info-edit__form-reset" data-bind="click: $parent.Back">отмена</button>
+    </form>
+</script>
+
+<script id="postDataTmpl" type="text/html">
+    <!-- version 1.0-->
+    <form class="profile-info-edit__form">
+        <!-- ko if: checkInfo() == 'yes' -->
+            <div data-for="another-fieldset-id" class="b-status b-status--fieldset b-status--done">Адрес подтверждён</div>
+        <!-- /ko -->
+        <!-- ko if: checkInfo() == 'no' -->
+            <div data-for="another-fieldset-id" class="b-status b-status--fieldset b-status--warning">Адрес не подтверждён</div>
+        <!-- /ko -->
+        <input type="hidden" name="address__country" value="1" data-bind="valueWithInit: idCountry, attr: {id: cssCountryList}">
+            <div data-bind="css: {'hidden': showRegion()}">
+                <input id="address__region" type="text" placeholder="Регион" name="address__region"
+                       data-bind="value: customRegion, attr: {id: cssRegionList}, enable: country"
+                       class="suggestion-input block-input profile-info-edit__form-input"/>
+                <!-- ko if: errorRegion -->
+                <div class="error__message">
+                    <p data-bind="text: errorRegion"></p>
+                </div>
+                <!-- /ko -->
+            </div>
+            <div data-bind="css: {'hidden': showCity()}">
+                <input id="address__city" type="text" placeholder="Населенный пункт" name="address__city"
+                       data-bind="value: customCity, attr: {id: cssCityList}, enable: customRegion"
+                       class="suggestion-input block-input profile-info-edit__form-input"/>
+                <!-- ko if: errorCity -->
+                <div class="error__message">
+                    <p data-bind="text: errorCity"></p>
+                </div>
+                <!-- /ko -->
+            </div>
+            <div data-bind="css: {'hidden': showAddress()}">
+                <input id="address__street" type="text" placeholder="Улица" name="address__street"
+                       data-bind="value: customAddress, attr: {id: cssAddress}, enable: customCity"
+                       class="suggestion-input block-input profile-info-edit__form-input"/>
+                <!-- ko if: errorAddress -->
+                <div class="error__message">
+                    <p data-bind="text: errorAddress"></p>
+                </div>
+                <!-- /ko -->
+            </div>
+            <div data-bind="css: {'hidden': showPostIndex()}">
+                <input id="address__postalcode" type="text" placeholder="Почтовый индекс"
+                       name="address__postalcode" data-bind="value: postIndex"
+                       class="suggestion-input block-input profile-info-edit__form-input"/>
+                <!-- ko if: errorPostIndex -->
+                <div class="error__message">
+                    <p data-bind="text: errorPostIndex"></p>
+                </div>
+                <!-- /ko -->
+            </div>
+            <button data-bind="click: Submit" type="button" class="btn profile-info-edit__form-sub">Сохранить</button><button type="reset" class="btn profile-info-edit__form-reset" data-bind="click: $parent.Back">отмена</button>
+        </form>
+</script>
+
+<script id="contactsDataFormTmpl" type="text/html">
+    <!-- version 1.0-->
+    <form class="profile-info-edit__form">
+        <label>Почта</label>
+        <input type="e-mail" placeholder="user@mail.com" data-bind="value: email, enable: !emailIsConfirm()" name="account__email" disabled="disabled" class="profile-info-edit__form-input">
+        <!-- ko if: errorEmail -->
+        <div class="error__message error__message--big">
+            <p data-bind="text: errorEmail"></p>
+        </div>
+        <!-- /ko -->
+        <div data-bind="visible: emailIsConfirm()" class="b-status b-status--done">E-mail подтверждён</div>
+        <div data-bind="visible: !emailIsConfirm()">
+            <div data-bind="visible: isExistEmail">
+                <span data-bind="click: SendMailToken" class="pseudo-link input-action input-action--right">Выслать код подтверждения</span>
+            </div>
+            <div data-bind="visible: sentEmailCode" class="input-holder">
+                <input type="text" placeholder="Код из email-сообщения" name="account__sms" data-bind="value:emailToken" class="profile-info-edit__form-input"/>
+                <!-- ko if: errorEmailToken -->
+                <div class="error__message">
+                    <p data-bind="text: errorEmailToken"></p>
+                </div>
+                <!-- /ko -->
+            </div>
+        </div>
+        <!-- ko ifnot: emailIsConfirm() -->
+        <span data-bind="click: SubmitMailToken, visible: sentEmailCode" class="input-action pseudo-link">Подтвердить</span>
+        <!-- /ko -->
+
+        <label>Телефон</label>
+        <input type="text" placeholder="+375 (29) 722-10-36" class="profile-info-edit__form-input"  name="account__phone" data-bind="value: phone, enable: !phoneIsConfirm(), attr: {id : cssPhone}" disabled="disabled">
+        <!-- ko if: errorPhone -->
+        <div class="error__message error__message--big">
+            <p data-bind="text: errorPhone"></p>
+        </div>
+        <!-- /ko -->
+        <div data-bind="visible: phoneIsConfirm()" class="b-status b-status--done">Телефон подтвержден</div>
+        <div data-bind="visible: !phoneIsConfirm()">
+            <div data-bind="visible: isExistPhone">
+                <span data-bind="click: SendPhoneToken" class="pseudo-link input-action input-action--right">Выслать код подтверждения</span>
+            </div>
+            <div data-bind="visible: sentCode" class="input-holder">
+                <input type="text" placeholder="Код из смс-сообщения" name="account__sms" data-bind="value:phoneToken" class="profile-info-edit__form-input"/>
+                <!-- ko if: errorPhoneToken -->
+                <div class="error__message">
+                    <p data-bind="text: errorPhoneToken"></p>
+                </div>
+                <!-- /ko -->
+            </div>
+        </div>
+        <!-- ko ifnot: phoneIsConfirm() -->
+        <span data-bind="click: SubmitPhoneToken, visible: sentCode" class="input-action pseudo-link">Подтвердить</span>
+        <!-- /ko -->
+
+        <button type="submit" class="btn profile-info-edit__form-sub" data-bind="visible: !phoneIsConfirm() || !emailIsConfirm(), click: SubmitForm" >сохранить</button><button type="reset" class="btn profile-info-edit__form-reset" data-bind="click: $parent.Back">отмена</button>
+    </form>
+</script>
+<script id="deliveryAddressTmpl" type="text/html">
+    <!-- version 1.0 -->
+</script>
+<script id="deliveryRowAddressTmpl" type="text/html">
+    <!-- version 1.0-->
+</script>
+<script id="deliveryAddressFormTmpl" type="text/html">
+    <!-- version 1.0 -->
+</script>
+<script id="securityTmpl" type="text/html">
+    <!-- version 1.0 -->
+    <!-- profile header -->
+    <div class="profile_theme">
+        <div class="profile-header">
+            <h1 class="profile-header__item">Смена пароля</h1>
+        </div>
+        <!-- /profile header -->
+        <!-- profile info password -->
+        <div class="profile-info-password">
+            <form class="profile-info-password__form" method="POST" target="upload_target" enctype="multipart/form-data"
+                  data-bind="attr: {id: cssSequrityForm}">
+                <label>Текущий пароль</label>
+                <input type="password" class="profile-info-password__form-input" name="password" value=""
+                       data-bind="value: oldPassword, attr : {id: cssOldPassword}">
+                <!-- ko if: errorOldPassword -->
+                <div class="form_error" data-bind="text: errorOldPassword"></div>
+                <!-- /ko -->
+                <label>Новый пароль</label>
+                <input type="password" class="profile-info-password__form-input" name="new_password" value=""
+                       data-bind="value: newPassword, attr : {id: cssNewPassword}">
+                <!-- ko if: errorNewPassword -->
+                <div class="form_error" data-bind="text: errorNewPassword"></div>
+                <!-- /ko -->
+                <label>Подтвердить пароль</label>
+                <input type="password" class="profile-info-password__form-input" name="new_password" type="password"
+                       data-bind="value: confirmPassword, attr : {id: cssConfirmPassword}">
+                <!-- ko if: errorConfirmPassword-->
+                <div class="form_error" data-bind="text: errorConfirmPassword"></div>
+                <!-- /ko -->
+                <button type="submit" class="btn profile-info-password__form-sub" data-bind="click: Submit">сменить
+                    пароль
+                </button>
+                <button type="reset" class="btn profile-info-password__form-reset" data-bind="click: Back">отмена</button>
+            </form>
+        </div>
+    </div>
+    <!-- /profile info password-->
+</script>

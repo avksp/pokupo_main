@@ -1,0 +1,53 @@
+<script id="emptyFavoritesTmpl" type="text/html">
+    <!-- version 1.0 -->
+    <div class="profile_theme">
+        <!-- profile header -->
+        <div class="profile-header">
+            <h1 class="profile-header__item">Закладки</h1>
+        </div>
+        <!-- /profile header -->
+        <div class="bookmarks-container">
+            <div>
+                <p>В избранном нет ни одного товара.</p>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="favoritesTmpl" type="text/html">
+    <!-- version 1.0 -->
+    <div class="profile_theme">
+        <!-- profile header -->
+        <div class="profile-header">
+            <h1 class="profile-header__item">Закладки</h1>
+        </div>
+        <!-- /profile header -->
+        <div class="bookmarks-container">
+            <!-- ko foreach: content -->
+            <!-- ko foreach: goods -->
+            <div class="catalog-item">
+                <div class="catalog-item__img">
+                    <a href="store-item.html">
+                        <span class="img-fon">
+                            <img src="" data-bind="attr: {src: routeImages, title: fullName }">
+                        </span>
+                        <span class="catalog-item__img-title" data-bind="text: fullName"></span>
+                    </a>
+                </div>
+                <div class="catalog-item__info">
+                    <div class="catalog-item__name"><a href="" data-bind="click: ClickGoods"><span data-bind="text: fullName"></span></a>
+                    </div>
+                    <div class="catalog-item__cost price_item">
+                        <span class="price__number" data-bind="text: sellEndCost"></span>
+                        <span class="price__thinsp">&nbsp;</span>
+                        <span class="price__rubl">руб.</span>
+                    </div>
+                    <a href="javascript:void(0);" class="btn catalog-item__bay-button" data-bind="click: AddToCart">Купить</a>
+                    <a href="javascript:void(0);" class="catalog-item__del-button i-del" data-bind="click: ClickRemove">Убрать</a>
+                </div>
+            </div>
+            <!-- /ko -->
+            <!-- /ko -->
+        </div>
+    </div>
+</script>

@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Message Subject</title>
+		<style>
+		@media only screen and (max-device-width: 480px) {
+			a[href^="tel"], a[href^="sms"] {
+				text-decoration: none;
+				color: #177a93;
+				pointer-events: none;
+				cursor: default;
+			}
+			.mobile_link a[href^="tel"],
+			.mobile_link a[href^="sms"] {
+				text-decoration: default;
+				color: #177a93 !important;
+				pointer-events: auto;
+				cursor: default;
+			}
+		}
+		@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+			a[href^="tel"], a[href^="sms"] {
+				text-decoration: none;
+				color: #177a93;
+				pointer-events: none;
+				cursor: default;
+			}
+			.mobile_link a[href^="tel"],
+			.mobile_link a[href^="sms"] {
+				text-decoration: default;
+				color: #177a93 !important;
+				pointer-events: auto;
+				cursor: default;
+			}
+		}
+		@media screen and (max-width: 600px) {
+			#contact{padding: 18px 40px;}
+			.podpis{margin: 0 auto; float: none;}
+			#footer{max-width: 603px; margin: 0 auto 25px auto; padding-left: 40px;}			
+		}		
+		</style>
+	</head>
+	<body style="background: #fff; font-family: arial;">
+		<div id="letter" style="max-width: 603px; margin: 21px auto; border-left: 1px solid #EEEBE6; border-right: 1px solid #EEEBE6;">
+			<div id="header" style="height: 135px; background: #EEEBE6 url('https://dev2.pokupo.ru/bundles/pokuporestapi/images/letters/volna-top-w.png') repeat-x bottom left;">
+				<a href="http://pokupo.ru" target="_blank" class="logo" style="display: block; float: left; margin: 45px 0 0 40px;">
+				<img src="https://dev2.pokupo.ru/bundles/pokuporestapi/images/letters/logo1.png" height="39px" width="161px" alt="Депозитстрой" /></a>
+				<ul style="float: right; margin: 55px 40px 0 0;">
+					<li style="display: inline-block; margin-right: 4px; font-size: 13px;"><a href="mailto:support@pokupo.ru" style="color: #177a93;">support@pokupo.ru</a></li>
+				</ul>
+			</div>
+			<div class="main" style="padding: 40px 40px 26px 40px; font-size: 14px; word-wrap: break-word; min-height: 324px;">
+				<h1 style="font-size: 30px; font-weight: normal;">Приветствуем, admin!
+				</h1>
+				<p style="margin: 1em 0;line-height: 20px;">Для подтверждения вашего почтового ящика, пройдите по ссылке: <a style="color: #177a93;" href="http://dev.pokupo.ru#/registration/step=2&username=admin&mail_token=59r3831fuf40gwco0s00s8ss8okg8ck448k8okoowog0kgooog">
+				http://dev.pokupo.ru#/registration/step=2&username=admin&mail_token=59r3831fuf40gwco0s00s8ss8okg8ck448k8okoowog0kgooog</a></p>
+				
+				<a class="button" style="font-size: 12px; text-transform: uppercase; font-weight: bold; display: block; background: #ffa800;
+				border-radius: 25px; text-align: center; width: 190px; height: 30px; text-decoration: none;
+				color: #000; padding-top: 16px; margin: 25px 0;" href="http://dev.pokupo.ru#/registration/step=2&username=admin&mail_token=59r3831fuf40gwco0s00s8ss8okg8ck448k8okoowog0kgooog">Подтвердить ящик</a>
+			
+			</div>
+			<div id="contact" style="padding: 30px 40px; height: 50px; border-bottom: 3px solid #CDCBC6; background: #EEEBE6 url('https://dev2.pokupo.ru/bundles/pokuporestapi/images/letters/volna-w.png') repeat-x top left;">
+				<div class="podpis">
+					<p style="margin-top: 0; font-size: 14px;">С наилучшими пожеланиями,<br>
+						администрация интернет магазина «Депозитстрой»<br>
+					<a href="http://dev.pokupo.ru" style="color: #177a93;">http://dev.pokupo.ru</a>
+				</div>
+			</div>			
+			
+		</div>
+		<div id="footer" style="max-width: 603px; margin: 0 auto 25px auto; padding-left: 80px;">
+			<p  style="font-size: 12px; margin: 0; padding: 0;">Работает на основе торговой платформы <a href="pokupo.ru" style="color: #177a93;">Pokupo.ru</a> © 2016</p>
+		</div>
+	</body>
+</html>

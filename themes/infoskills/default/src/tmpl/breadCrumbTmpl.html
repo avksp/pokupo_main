@@ -1,0 +1,14 @@
+<script id="breadCrumbTmpl" type="text/html">
+  <!-- version 1.0-->
+  <!-- ko if: showReturn -->
+    <a href="" data-bind="click: Return" class="backwards-arrow"></a>
+    <a href="" class="home" data-bind="click: ToHomepage">Главная</a>
+  <!-- /ko -->
+  <!-- ko ifnot: showReturn -->
+    <a href="" class="home" data-bind="click: ToHomepage">Главная</a>
+  <!-- /ko -->
+  <!-- ko foreach: crumbs -->
+    <a href="" data-bind="text: title, click: ClickItem"></a>
+  <!-- /ko -->
+  <a href="javascript:void(0);" class="current" data-bind="text: lastItem">Личный кабинет</a>
+</script>

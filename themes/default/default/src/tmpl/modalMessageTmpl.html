@@ -1,0 +1,136 @@
+<script id="modalMessageConfirmTmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="modal" id="modal-confirm">
+        <div class="modal-dialog b-modal-info">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close-modal btn-circle btn-circle--drop btn-circle--orange" data-bind="click:Click.Close"></span>
+                </div>
+                <div class="modal-body">
+                    <h3 class="b-modal-info__icon icon-warning" data-bind="text: message"></h3>
+                    <div class="b-modal-info__actions">
+                        <button class="btn btn-lg btn-grey close-modal" type="button" data-bind="click: Click.NotConfirm">Нет</button>
+                        <button class="btn btn-lg" type="button" data-bind="click: Click.Confirm">Да</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="modalMessageSuccessTmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="modal" id="modal-success">
+        <div class="modal-dialog b-modal-info">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close-modal btn-circle btn-circle--drop btn-circle--orange" data-bind="click:Click.Confirm"></span>
+                </div>
+                <div class="modal-body">
+                    <h3 class="b-modal-info__icon icon-success"  data-bind="text: message"></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="modalMessageErrorTmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="modal" id="modal-error">
+        <div class="modal-dialog b-modal-info">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close-modal btn-circle btn-circle--drop btn-circle--orange" data-bind="click:Click.Confirm"></span>
+                </div>
+                <div class="modal-body">
+                    <h3 class="b-modal-info__icon icon-error"  data-bind="text: error"></h3>
+                    <p data-bind="text: message"></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="modalMessageMessageTmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="modal" id="modal-message">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><span class="close-modal btn-circle btn-circle--drop btn-circle--orange" data-bind="click:Click.Close"></span>
+                    <h2 class="b-profile__headline">Добавить комментарий к избранному товару</h2>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="input-holder" style="padding:0">
+                            <textarea rows="5" name="msg_text" data-bind="value: message"></textarea>
+                        </div>
+                        <button class="btn btn-lg btn-grey btn-inline close-modal" type="button" data-bind="click:Click.Close">Отмена</button>
+                        <button class="btn btn-lg" type="button" data-bind="click: Click.GetMessage">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="modalMessageTimeoutErrorTmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="modal" id="modal-error">
+        <div class="modal-dialog b-modal-info">
+            <div class="modal-content">
+                <div class="modal-header">
+                </div>
+                <div class="modal-body">
+                    <div class="pkp-payment-error-img-wrap">
+                        <img src="https://pokupo.ru/themes/default/images/payment/error.png" alt="">
+                    </div>
+                    <br/>
+                    <p>Вау, кажется, вы нашли очень интересную ошибку в работе нашего магазина. Пожалуйста, нажмите сочетание клавиш Ctrl +F5 и если ошибка повторится, сообщите о ней в <a href="https://help.pokupo.ru/index.php?a=add" target="_blank">службу поддержки</a>.</p>
+                    <div class="b-modal-info__actions">
+                        <!-- ko if: showBack() -->
+                        <button class="btn btn-sm btn-grey close-modal" type="button" data-bind="click: Click.Back">Назад</button>
+                        <!-- /ko -->
+                        <!-- ko if: showToHomepage() -->
+                        <button class="btn btn-sm" type="button" data-bind="click: Click.ToHomepage">На главную</button>
+                        <!-- /ko -->
+                        <!-- ko if: showCabinet() -->
+                        <button class="btn btn-sm btn-grey" type="button" data-bind="click: Click.ToCabinet">Перейти в кабинет</button>
+                        <!-- /ko -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="modalMessageFatalErrorTmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="modal" id="modal-error">
+        <div class="modal-dialog b-modal-info">
+            <div class="modal-content">
+                <div class="modal-header">
+                </div>
+                <div class="modal-body">
+                    <div class="pkp-payment-error-img-wrap">
+                        <img src="https://pokupo.ru/themes/default/images/payment/error.png" alt="">
+                    </div>
+                    <br/>
+                    <p data-bind="text: message"></p>
+                    <div class="b-modal-info__actions">
+                        <!-- ko if: showBack() -->
+                        <button class="btn btn-sm btn-grey close-modal" type="button" data-bind="click: Click.Back">Назад</button>
+                        <!-- /ko -->
+                        <!-- ko if: showToHomepage() -->
+                        <button class="btn btn-sm" type="button" data-bind="click: Click.ToHomepage">На главную</button>
+                        <!-- /ko -->
+                        <!-- ko if: showCabinet() -->
+                        <button class="btn btn-sm btn-grey" type="button" data-bind="click: Click.ToCabinet">Перейти в кабинет</button>
+                        <!-- /ko -->
+                        <a href="https://help.pokupo.ru/index.php?a=add" target="_blank" class="btn btn-sm btn-grey">Служба поддержки</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

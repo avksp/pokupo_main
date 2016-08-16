@@ -1,0 +1,509 @@
+<script id="orderFormStep1Tmpl" type="text/html">
+    <!-- version 1.0-->
+    <p>test</p>
+</script>
+<script id="orderLoginFormStep1Tmpl" type="text/html">
+    <!-- version 1.0-->
+</script>
+<script id="orderRegistrationFormStep1Tmpl" type="text/html">
+    <!-- version 1.0-->
+</script>
+<script id="orderConfirmFormStep1Tmpl" type="text/html">
+    <!-- version 1.0-->
+</script>
+<script id="orderProfileFormStep1Tmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="content_theme">
+        <!-- payment widget -->
+        <div id="pkp-container">
+            <h1 class="pkp-title pkp-title_big title_page_theme">Оформление заказа</h1>
+            <div class="pmt-sum"><span>Персональные данные</span>
+            </div>
+
+            <form class="pkp-form j-pkp-payment" action="#" id="pokupo_payment_form">
+                <div>
+                    <label class="pkp-form__label">
+                        <span class="pkp-span_required">Фамилия</span>
+                        <!-- ko if: errorLastName -->
+                        <span class="pkp-error-msg" data-bind="text: errorLastName"></span>
+                        <!-- /ko -->
+                        <input class="pkp-input j-pkp-req-input" type="text" placeholder="Фамилия"
+                               data-bind="value: lastName" name="sname">
+                    </label>
+                </div>
+                <div>
+                    <label class="pkp-form__label">
+                        <span class="pkp-span_required">Имя</span>
+                        <!-- ko if: errorFirstName -->
+                        <span class="pkp-error-msg" data-bind="text: errorFirstName"></span>
+                        <!-- /ko -->
+                        <input class="pkp-input j-pkp-req-input" type="text" placeholder="Имя"
+                               data-bind="value: firstName" name="fname">
+                    </label>
+                </div>
+                <div>
+                    <label class="pkp-form__label">
+                        <span class="pkp-span_required">Отчество</span>
+                        <!-- ko if: errorMiddleName -->
+                        <span class="pkp-error-msg" data-bind="text: errorMiddleName"></span>
+                        <!-- /ko -->
+                        <input class="pkp-input j-pkp-req-input" type="text" placeholder="Отчество"
+                               data-bind="value: middleName" name="mname">
+                    </label>
+                </div>
+                <div>
+                    <label class="pkp-form__label">
+                        <span class="pkp-span_required">Дата рождения</span>
+                        <!-- ko if: errorBirthDay -->
+                        <span class="pkp-error-msg" data-bind="text: errorBirthDay"></span>
+                        <!-- /ko -->
+                        <input class="pkp-input j-pkp-req-input" type="text" placeholder="Дата рождения"
+                               data-bind="attr: {id: cssBirthDay}">
+                        <input name="bdate" type="hidden" data-bind="value: birthDayHiddenField"/>
+                    </label>
+                </div>
+                <div>
+                    <label class="pkp-form__label">
+                        <span class="pkp-span_required">Пол</span>
+                        <!-- ko if: errorGender -->
+                        <span class="pkp-error-msg" data-bind="text: errorGender"></span>
+                        <!-- /ko -->
+                        <input id="gender-male" type="radio" name="gender" value="m" data-bind="checked: gender"
+                               class="inline"/>
+                        <label for="gender-male">Мужской</label>
+                        <input id="gender-female" type="radio" name="gender" value="w" data-bind="checked: gender"
+                               class="inline"/>
+                        <label for="gender-female">Женский</label>
+                    </label>
+                </div>
+                <div>
+                    <label class="pkp-form__label">
+                        <input class="j-pkp-req-input" type="checkbox" checked=""
+                               data-bind="click: SpecifyLater" class="checkbox">
+                        <span class="pkp-span_required">Указать позже</span>
+                    </label>
+                </div>
+            </form>
+            <div class="pkp-btn-group">
+                <div class="pkp-btns-holder">
+                    <a class="pkp-btn pkp-btn_pay" data-bind="click: SubmitForm">Сохранить</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script id="orderFormStep2Tmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="content_theme">
+        <!-- payment widget -->
+        <div id="pkp-container">
+            <h1 class="pkp-title pkp-title_big title_page_theme">Оформление заказа</h1>
+            <div class="pmt-sum"><span>Выберите адрес доставки</span></div>
+
+            <form class="pkp-form j-pkp-payment">
+                <div class="cart-container">
+                    <div class="cart-head">
+                        <span class="cart-head__img"></span>
+                        <span class="cart-head__title">Адрес</span>
+                        <span class="cart-head__added">Получатель</span>
+                        <span class="cart-head__price">Контактный телефон</span>
+                        <span class="cart-head__drop"></span>
+                    </div>
+                    <div class="cart-body">
+                        <!-- ko foreach: addressList --><!-- ko if: isDefault -->
+                        <div data-bind="click: ClickItem, css: cssIsDefault()" class="cart-item active">
+                            <!-- ko template: {name: 'orderFormRowStep2Tmpl' } -->
+                            <!-- /ko-->
+                        </div><!-- /ko --><!-- ko ifnot: isDefault -->
+                        <div data-bind="click: ClickItem, css: cssIsDefault()" class="cart-item">
+                            <!-- ko template: {name: 'orderFormRowStep2Tmpl' }-->
+                            <!-- /ko-->
+                        </div><!-- /ko --><!-- /ko -->
+                    </div>
+                </div>
+            </form>
+            <div>
+                <a class="pkp-btn pkp-btn_pay add-btn" data-bind="click: ClickAddAddress">Добавить новый адрес</a>
+            </div>
+            <div class="pkp-btn-group">
+                <div class="pkp-btns-holder">
+                    <a class="pkp-btn pkp-btn_back" data-bind="click: Back">Назад</a><a class="pkp-btn pkp-btn_pay"
+                                                                                        data-bind="click: Submit">Продолжить</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+
+<script id="orderFormRowStep2Tmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="cart-item__img">
+        <!-- ko if: isDefault() -->
+        <input type="radio" data-bind="attr: {'name': 'is_default_' + id }" checked="checked"/>
+        <!-- /ko -->
+        <!-- ko ifnot: isDefault() -->
+        <input type="radio" data-bind="attr: {'name': 'is_default_' + id }"/>
+        <!-- /ko -->
+    </div>
+    <div class="cart-item__title">
+        <span>
+        <!-- ko text: postCode-->
+            <!-- /ko -->,
+            <!-- ko text: country-->
+            <!-- /ko -->,
+            <!-- ko text: region-->
+            <!-- /ko -->,
+            <!-- ko text: city-->
+            <!-- /ko -->,
+            <!-- ko text: address-->
+            <!-- /ko-->
+        </span>
+    </div>
+    <div class="cart-item__added"><span data-bind="text: addressee"></span></div>
+    <div class="cart-item__price"><span data-bind="text: contactPhone">0</span></div>
+    <div class="cart-item__drop"><a href="javascript:void(0);" class="i-drop" data-bind="click: Delete"></a></div>
+</script>
+
+<script id="orderDeliveryFormStep2Tmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="content_theme">
+        <!-- payment widget -->
+        <div id="pkp-container">
+            <h1 class="pkp-title pkp-title_big title_page_theme">Оформление заказа</h1>
+            <div class="product-info__type"><span>Для доставки покупок требуется указать почтовый адрес</span>
+            </div>
+
+            <form class="pkp-form j-pkp-payment" action="#" id="pokupo_payment_form">
+                <div>
+                    <label class="pkp-form__label">
+                        <span class="pkp-span_required">Страна</span>
+                        <!-- ko if: errorCountry -->
+                        <span class="pkp-error-msg" data-bind="text: errorCountry"></span>
+                        <!-- /ko -->
+                        <div>
+                            <select name="address__country" data-bind="value: idCountry, attr: {id: cssCountryList}"
+                                    data-placeholder="Страна" class="suggestion-input pkp-input j-pkp-req-input">
+                                <option value=""></option><!-- ko foreach: countryList -->
+                                <!-- ko if: $parent.country() --><!-- ko if: $parent.country().id  == id -->
+                                <option data-bind="text: name, value: id" selected="selected"></option><!-- /ko -->
+                                <!-- ko ifnot: $parent.country().id  == id -->
+                                <option data-bind="text: name, value: id"></option><!-- /ko --><!-- /ko -->
+                                <!-- ko ifnot: $parent.country() -->
+                                <option data-bind="text: name, value: id"></option><!-- /ko --><!-- /ko -->
+                            </select>
+                        </div>
+                    </label>
+                </div>
+                <div>
+                    <label class="pkp-form__label" data-bind="css: {'hidden': showRegion()}">
+                        <span class="pkp-span_required">Регион</span>
+                        <!-- ko if: errorRegion -->
+                        <span class="pkp-error-msg" data-bind="text: errorRegion"></span>
+                        <!-- /ko -->
+                        <input class="pkp-input j-pkp-req-input" type="text" placeholder="Регион"
+                               data-bind="value: customRegion, attr: {id: cssRegionList}, enable: country">
+                    </label>
+                </div>
+                <div>
+                    <label class="pkp-form__label" data-bind="css: {'hidden': showCity()}">
+                        <span class="pkp-span_required">Населенный пункт</span>
+                        <!-- ko if: errorCity -->
+                        <span class="pkp-error-msg" data-bind="text: errorCity"></span>
+                        <!-- /ko -->
+                        <input class="pkp-input j-pkp-req-input" type="text" placeholder="Населенный пункт"
+                               data-bind="value: customCity, attr: {id: cssCityList}, enable: customRegion">
+                    </label>
+                </div>
+                <div>
+                    <label class="pkp-form__label" data-bind="css: {'hidden': showAddress()}">
+                        <span class="pkp-span_required">Улица, дом, квартира</span>
+                        <!-- ko if: errorAddress -->
+                        <span class="pkp-error-msg" data-bind="text: errorAddress"></span>
+                        <!-- /ko -->
+                        <input class="pkp-input j-pkp-req-input" type="text" placeholder="Улица, дом, квартира"
+                               data-bind="value: customAddress, attr: {id: cssAddress}, enable: customCity">
+                    </label>
+                </div>
+                <div>
+                    <label class="pkp-form__label" data-bind="css: {'hidden': showPostIndex()}">
+                        <span class="pkp-span_required">Почтовый индекс</span>
+                        <!-- ko if: errorPostCode -->
+                        <span class="pkp-error-msg" data-bind="text: errorPostCode"></span>
+                        <!-- /ko -->
+                        <input class="pkp-input j-pkp-req-input" type="text" placeholder="Почтовый индекс"
+                               data-bind="value: postCode, attr: {id: cssPostCode}">
+                    </label>
+                </div>
+                <div>
+                    <label class="pkp-form__label">
+                        <span class="pkp-span_required">ФИО получателя</span>
+                        <!-- ko if: errorAddressee -->
+                        <span class="pkp-error-msg" data-bind="text: errorAddressee"></span>
+                        <!-- /ko -->
+                        <input class="pkp-input j-pkp-req-input" type="text" placeholder="ФИО получателя"
+                               data-bind="value: addressee, attr: {id: cssAddressee}">
+                    </label>
+                </div>
+                <div>
+                    <label class="pkp-form__label">
+                        <span class="pkp-span_required">Телефон покупателя</span>
+                        <!-- ko if: errorContactPhone -->
+                        <span class="pkp-error-msg" data-bind="text: errorContactPhone"></span>
+                        <!-- /ko -->
+                        <input class="pkp-input j-pkp-req-input masked-phone" type="text"
+                               placeholder="Телефон покупателя"
+                               data-bind="value: contactPhone, attr:{id:cssContactPhone}">
+                    </label>
+                </div>
+                <div>
+                    <label class="pkp-form__label">
+                        <input class="j-pkp-req-input" type="checkbox" checked=""
+                               data-bind="checked: isDefault" class="checkbox">
+                        <span class="pkp-span_required">Основной адрес</span>
+                    </label>
+                </div>
+            </form>
+            <div class="pkp-btns-holder">
+                <a class="pkp-btn pkp-btn_back" data-bind="click: Back">Назад</a><a class="pkp-btn pkp-btn_pay"
+                                                                                    data-bind="click: Submit">Сохранить</a>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="orderFormStep3Tmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="content_theme">
+        <!-- payment widget -->
+        <div id="pkp-container">
+            <h1 class="pkp-title pkp-title_big title_page_theme">Оформление заказа</h1>
+            <div class="pmt-sum"><span>Выберите способ доставки</span></div>
+
+            <form class="pkp-form j-pkp-payment">
+                <div class="pkp-payment-method pkp-clearfix">
+                    <!-- ko foreach: shipping() -->
+                    <div class="pkp-payment-method__item">
+                        <!-- ko if: descMethodShipping() -->
+                        <div class="pkp-tooltip-payment-method">
+                            <div class="pkp-tooltip">
+                                <span class="pkp-tooltip__trigger">?</span>
+
+                                <div class="pkp-tooltip__content">
+                                    <h6 class="pkp-tooltip__title" data-bind="text: nameMethodShipping"></h6>
+                                    <p data-bind="html: descMethodShipping"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /ko -->
+                        <div class="pkp-payment-method__content">
+                            <div class="pkp-payment-method__image" data-bind="click: SelectAndSubmit">
+                                <img src="" alt="" data-bind="attr: {src: logoShippingCompany}">
+                            </div>
+                            <!-- ko if: costShipping -->
+                            <div class="pkp-payment-method__info" data-bind="click: SelectAndSubmit">
+                                <span class="pkp-span">Стоимость: <strong><!-- ko text: costShipping --><!-- /ko --> руб.</strong></span>
+                            </div>
+                            <!-- /ko -->
+                            <button class="pkp-payment-method__pay j-pkp-pay"
+                                    data-bind="click: SelectAndSubmit, text: nameMethodShipping"></button>
+                        </div>
+                    </div>
+                    <!-- /ko -->
+                </div>
+            </form>
+            <div class="pkp-btn-group">
+                <div class="pkp-btns-holder">
+                    <a class="pkp-btn pkp-btn_back" data-bind="click: Back">Назад</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="orderFormStep4Tmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="content_theme">
+        <!-- payment widget -->
+        <div id="pkp-container">
+            <h1 class="pkp-title pkp-title_big title_page_theme">Оформление заказа</h1>
+            <div class="pmt-sum">
+                <span>Выберите способ оплаты</span>
+            </div>
+
+            <form class="pkp-form j-pkp-payment">
+                <div class="pkp-payment-method pkp-clearfix">
+                    <!-- ko foreach: payment -->
+                    <div class="pkp-payment-method__item">
+                        <!-- ko if: instrPayment() -->
+                        <div class="pkp-tooltip-payment-method">
+                            <div class="pkp-tooltip">
+                                <span class="pkp-tooltip__trigger">?</span>
+
+                                <div class="pkp-tooltip__content">
+                                    <h6 class="pkp-tooltip__title" data-bind="text: namePayment"></h6>
+                                    <p data-bind="html: instrPayment"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /ko -->
+                        <div class="pkp-payment-method__content">
+                            <div class="pkp-payment-method__image" data-bind="click: SelectAndSubmit">
+                                <img src="" alt="" data-bind="attr: {src: logoPayment}">
+                            </div>
+                            <!-- ko if: costPayment -->
+                            <div class="pkp-payment-method__info" data-bind="click: SelectAndSubmit">
+                                <span class="pkp-span">Стоимость: <strong><!-- ko text: costPayment -->
+                                    <!-- /ko --> руб.</strong></span>
+                            </div>
+                            <!-- /ko -->
+                            <button class="pkp-payment-method__pay j-pkp-pay"
+                                    data-bind="click: SelectAndSubmit, text: namePayment"></button>
+                        </div>
+                    </div>
+                    <!-- /ko -->
+                </div>
+            </form>
+            <div class="pkp-btn-group">
+                <div class="pkp-btns-holder">
+                    <a class="pkp-btn pkp-btn_back" data-bind="click: Back">Назад</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script id="orderFormStep5Tmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="content_theme">
+        <!-- payment widget -->
+        <div id="pkp-container">
+            <h1 class="pkp-title pkp-title_big title_page_theme">Подтверждение заказа</h1>
+
+            <div class="pkp-payment-method__item current">
+                <div class="pkp-tooltip-payment-method">
+                    <div class="pkp-tooltip">
+                        <span class="pkp-tooltip__trigger">?</span>
+
+                        <div class="pkp-tooltip__content">
+                            <h6 class="pkp-tooltip__title" ><!-- ko text: namePayment--><!-- /ko--></h6>
+                            <p data-bind="html :descPayment"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="pkp-payment-method__content">
+                    <div class="pkp-payment-method__image">
+                        <img src="" alt="" data-bind="attr: {src: logoPayment}">
+                    </div>
+                    <div class="pkp-payment-method__info">
+                        <span class="pkp-span">Скорость: <strong><!-- ko text: timePayment--><!-- /ko--></strong></span>
+                        <span class="pkp-span">Комиссия: <strong><!-- ko text: costPayment--><!-- /ko --> руб.</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pmt-sum">
+                <span>Номер счета:</span>
+                <span><!-- ko text: id --><!-- /ko --></span>
+            </div>
+            <!-- ko if: discount -->
+            <div class="pmt-sum">
+                <span>Скидка: <i><!-- ko text: discount--><!-- /ko--></i></span>
+                <span><!-- ko text: discountSum--><!-- /ko --> р.</span>
+            </div>
+            <!-- /ko -->
+            <!-- ko if: realShipping -->
+            <div class="pmt-sum">
+                <span>Доставка: <i><!-- ko text: nameMethodShipping--><!-- /ko--></i></span>
+                <span><!-- ko text: costShipping--><!-- /ko --> р.</span>
+            </div>
+            <!-- /ko -->
+            <div class="pmt-sum">
+                <span>Способ оплаты: <i><!-- ko text: namePayment--><!-- /ko--></i></span>
+                <span><!-- ko text: costPayment--><!-- /ko --> р.</span>
+            </div>
+            <div class="pmt-sum">
+                <span>Сумма счета:</span>
+                <span><!-- ko text: itog()--><!-- /ko --> р.</span>
+            </div>
+
+            <div class="pmt-sum"><span>Товары</span></div>
+            <div class="cart-container">
+                <div class="cart-head">
+                    <span class="cart-head__img"></span>
+                    <span class="cart-head__title">Наименование</span>
+                    <span class="cart-head__price">Цена</span>
+                    <span class="cart-head__added">Количество</span>
+                    <span class="cart-head__price">Сумма</span>
+                </div>
+                <div class="cart-body">
+                    <!-- ko foreach: goods -->
+                    <div class="cart-item">
+                        <div class="cart-item__img">
+                            <span class="img-fon"><img src="" data-bind="attr: {src: routeImage}"></span>
+                        </div>
+                        <div class="cart-item__title">
+                            <a href="javascript:void(0);" data-bind="click: ClickGoods"><span data-bind="text: fullName"></span></a>
+                        </div>
+                        <div class="cart-item__price"><span data-bind="text: sellCost"></span> р.</div>
+                        <div class="cart-item__added"><span data-bind="text: count"></span></div>
+                        <div class="cart-item__price"><span data-bind="text: itogSellCost">0</span></div>
+                    </div>
+                    <!-- /ko -->
+                </div>
+            </div>
+
+            <!-- ko if: realShipping -->
+            <div class="pmt-sum"><span>Доставка</span></div>
+            <div class="cart-container">
+                <div class="cart-head">
+                    <span class="cart-head__img"></span>
+                    <span class="">Компания</span>
+                    <span class="cart-head__title">Адрес</span>
+                    <span class="cart-head__added">Получатель</span>
+                    <span class="cart-head__price">Телефон</span>
+                </div>
+                <div class="cart-body">
+                    <div class="cart-item">
+                        <div class="cart-item__img">
+                            <span class="img-fon"><img src="" data-bind="attr: {src: logoMethodShipping}"></span>
+                        </div>
+                        <div class="">
+                            <!-- ko text: nameMethodShipping-->
+                            <!-- /ko-->
+                        </div>
+                        <div class="cart-item__title">
+                            <!-- ko text: shippingPostCode-->
+                            <!-- /ko-->,
+                            <!-- ko text: shippingCountry-->
+                            <!-- /ko-->,
+                            <!-- ko text: shippingRegion-->
+                            <!-- /ko-->,<br/>
+                            <!-- ko text: shippingCity-->
+                            <!-- /ko-->,
+                            <!-- ko text: shippingAddress-->
+                            <!-- /ko-->
+                        </div>
+                        <div class="cart-item__added"><span data-bind="text: shippingAddressee"></span></div>
+                        <div class="cart-item__price"><span data-bind="text: shippingContactPhone"></span></div>
+                    </div>
+                </div>
+            </div>
+            <!-- /ko -->
+
+            <label class="pkp-form__label">
+                <span class="pkp-span_required">Примечания к заказу</span>
+                <div>
+                <textarea style="height: 80px; width: 400px" class="pkp-input j-pkp-req-input" type="text" data-bind="value: commentBuyer"></textarea>
+                </div>
+            </label>
+
+            <div class="pkp-btn-group">
+                <div>
+                    <a class="pkp-btn pkp-btn_back" data-bind="click: Back">Назад</a>
+                    <a class="pkp-btn pkp-btn_back" data-bind="click: ClickDelete">Отменить заказ</a>
+                    <a class="pkp-btn pkp-btn_pay" data-bind="click: ClickConfirm">Подтверждаю</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

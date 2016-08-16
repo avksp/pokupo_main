@@ -1,0 +1,147 @@
+<script id="modalMessageConfirmTmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="fade in">
+        <div class="popup new-password-massage">
+            <div class="popup-head">
+                <h3></h3>
+            </div>
+            <div class="popup-content">
+                <div class="popup-content__icon">
+                    <span class="i-ok"></span>
+                </div>
+                <div class="popup-content__desc">
+                    <p data-bind="text: message"></p>
+                </div>
+                <div class="popup-content__buttons">
+                    <button type="button" class="btn popup-content__btn-enter blue" data-bind="click:Click.NotConfirm">Нет</button>
+                    <button type="button" class="btn popup-content__btn-enter white" data-bind="click: Click.Confirm">Да</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="modalMessageSuccessTmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="fade in">
+        <div class="popup new-password-massage">
+            <div class="popup-head">
+                <h3></h3>
+            </div>
+            <div class="popup-content">
+                <div class="popup-content__icon">
+                    <span class="i-ok"></span>
+                </div>
+                <div class="popup-content__desc">
+                    <p data-bind="text: message"></p>
+                </div>
+                <div class="popup__drop"><a href="javascript:void(0);" class="i-drops" data-bind="click:Click.Confirm"></a></div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="modalMessageErrorTmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="fade in" id="modal-error">
+        <div class="popup error-massage">
+            <div class="popup-head">
+                <h3>Ошибка</h3>
+            </div>
+            <div class="popup-content">
+                <div class="popup-content__icon">
+                    <span class="i-error"></span>
+                </div>
+                <div class="popup-content__desc m-error">
+                    <p data-bind="text: message"></p>
+                </div>
+                <div class="popup__drop"><a href="javascript:void(0);" class="i-drops" data-bind="click:Click.Confirm"></a></div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="modalMessageMessageTmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="fade in">
+        <div class="popup new-password-massage">
+            <div class="popup-head">
+                <h3>Добавить комментарий</h3>
+            </div>
+            <div class="popup-content">
+                <form>
+                    <div class="popup-content__desc">
+                        <div class="input-holder" style="padding:0">
+                            <textarea rows="5" name="msg_text" data-bind="value: message"></textarea>
+                        </div>
+                    </div>
+                    <div class="popup-content__buttons">
+                        <button type="button" class="btn popup-content__btn-enter blue" data-bind="click:Click.Close">Отмена</button>
+                        <button type="button" class="btn popup-content__btn-enter white" data-bind="click: Click.GetMessage">Отправить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="modalMessageTimeoutErrorTmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="fade in" id="modal-error">
+        <div class="popup error-massage">
+            <div class="popup-head">
+                <h3>Ошибка</h3>
+            </div>
+            <div class="popup-content">
+                <div class="popup-content__icon">
+                    <span class="i-error"></span>
+                </div>
+                <div class="popup-content__desc m-error">
+                    <p>Вау, кажется, вы нашли очень интересную ошибку в работе нашего магазина. Пожалуйста, нажмите сочетание клавиш Ctrl +F5 и если ошибка повторится, сообщите о ней в <a href="https://help.pokupo.ru/index.php?a=add" target="_blank">службу поддержки</a>.</p>
+                </div>
+                <div class="popup-content__buttons">
+                    <!-- ko if: showBack() -->
+                    <button type="button" class="btn popup-content__btn-enter blue" data-bind="click:Click.Back">Назад</button>
+                    <!-- /ko -->
+                    <!-- ko if: showToHomepage() -->
+                    <button type="button" class="btn popup-content__btn-enter blue" data-bind="click:Click.ToHomepage">На главную</button>
+                    <!-- /ko -->
+                    <!-- ko if: showCabinet() -->
+                    <button type="button" class="btn popup-content__btn-enter white" data-bind="click: Click.ToCabinet">Перейти в кабинет</button>
+                    <!-- /ko -->
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="modalMessageFatalErrorTmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="fade in" id="modal-error">
+        <div class="popup error-massage">
+            <div class="popup-head">
+                <h3>Ошибка</h3>
+            </div>
+            <div class="popup-content">
+                <div class="popup-content__icon">
+                    <span class="i-error"></span>
+                </div>
+                <div class="popup-content__desc m-error">
+                    <p data-bind="text: message"></p>
+                </div>
+                <div class="popup-content__buttons">
+                    <!-- ko if: showBack() -->
+                    <button type="button" class="btn popup-content__btn-enter blue" data-bind="click:Click.Back">Назад</button>
+                    <!-- /ko -->
+                    <!-- ko if: showToHomepage() -->
+                    <button type="button" class="btn popup-content__btn-enter blue" data-bind="click:Click.ToHomepage">На главную</button>
+                    <!-- /ko -->
+                    <!-- ko if: showCabinet() -->
+                    <button type="button" class="btn popup-content__btn-enter blue" data-bind="click: Click.ToCabinet">Перейти в кабинет</button>
+                    <!-- /ko -->
+                    <a href="https://help.pokupo.ru/index.php?a=add" target="_blank" class="btn popup-content__btn-enter white">Служба поддержки</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

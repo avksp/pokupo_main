@@ -1,0 +1,187 @@
+<script id="goodsTmpl" type="text/html">
+    <!-- version 1.0-->
+    <!-- product-store -->
+    <div class="product-store">
+        <!-- version 1.0-->
+        <!-- product info: image, title, seller info and other -->
+        <div class="product-info">
+            <!-- ko template: { name: 'goodsGalleryBlockTmpl', data: blocks } --><!-- /ko -->
+            <div class="product-info__info">
+                <!--<div class="product-info__type"><span>Электронная книга</span></div>-->
+                <div class="product-info__title"><h1><span data-bind="text: blocks.main.fullName"></span></h1></div>
+                <!-- ko if: blocks.main.dateCreate -->
+                <div class="product-info__load">Загружен: <span class="product-info__load-date" data-bind="text: blocks.main.dateCreate"></span></div>
+                <!-- /ko -->
+                <div class="product-info__sale">Продаж: <span  class="product-info__sale-num" data-bind="text: blocks.main.countSell"></span>
+                    <!-- ko if: blocks.main.dateLastOrder -->
+                        <span class="product-info__sale-last"> (последнее <!-- ko text: blocks.main.dateLastOrder --><!-- /ko -->)</span>
+                    <!-- /ko -->
+                </div>
+                <div class="product-info__rb">
+                    <!-- ko if: blocks.main.showAddToCart -->
+                    <a href="javascript:void(0);" class="product-info__read-button i-read" data-bind="click: blocks.main.AddToCart">Читать фрагмент</a>
+                    <!-- /ko -->
+                    <!-- ko if: blocks.main.showFavorites -->
+                        <!-- ko if: blocks.main.IsFavorite -->
+                            <a href="javascript:void(0);" data-bind="click: blocks.main.ClickFavorites" class="product-info__bookmarks-button i-book">В закладках</a>
+                        <!-- /ko -->
+                        <!-- ko ifnot: blocks.main.IsFavorite -->
+                            <a href="javascript:void(0);" data-bind="click:blocks.main.AddFavorites"class="product-info__bookmarks-button i-book">В закладки</a>
+                        <!-- /ko -->
+                    <!-- /ko -->
+                </div>
+                <div class="product-info__seller i-seller"><span>Продавец </span>
+                    <span class="product-info__seller-stat on">online</span>
+                    <a href="javascript:void(0);" class="product-info__seller-name">
+                        <span data-bind="text: sellerInfo.seller.name_seller"></span>
+                    </a>
+                </div>
+                <a href="" data-bind="attr: {href: 'mailto:' + sellerInfo.shop.email_support}" class="btns product-info__question-button" >Задать вопрос</a>
+            </div>
+        </div>
+        <!-- /product info -->
+
+        <!-- product cost, bay button, partner discount, rules, form subscribe -->
+        <!-- ko template: { name: 'goodsPriceInfoBlockTmpl'} --><!-- /ko -->
+        <!-- /product cost -->
+
+        <!-- product seller for mobile -->
+        <div class="product-seller">
+            <div class="product-info__seller i-seller"><span>Продавец </span>
+                <span class="product-info__seller-stat on">online</span>
+                <a href="javascript:void(0);" class="product-info__seller-name">
+                    <span  data-bind="text: sellerInfo.seller.name_seller"></span>
+                </a>
+            </div>
+            <a href="javascript:void(0);" class="btn product-info__question-button">Задать вопрос</a>
+        </div>
+        <!-- /product seller for mobile -->
+
+        <!-- product-description -->
+        <!-- ko template: { name: 'goodsDescriptionBlockTmpl' } --><!-- /ko -->
+        <!-- /product-description -->
+
+        <!-- product-recommendations -->
+        <div data-bind="embedWidget :{ widget : 'relatedGoods', params : {id : id}}"></div>
+        <!-- /product-recommendations -->
+
+        <!-- product-reviews -->
+        <!-- ko if: blocks.opinion && blocks.opinion.content -->
+        <div class="product-reviews">
+            <div class="product-reviews__head">
+                <h3>Отзывы</h3><span class="product-reviews__head-num"><!-- ko text: blocks.opinion.content.params.length --><!-- /ko --></span>
+            </div>
+
+            <!-- ko foreach: blocks.opinion.content.params -->
+            <article class="product-reviews__review">
+                <div class="product-reviews__review-head">
+                    <!-- ko if: value_opinion > 5 -->
+                    <span class="rating plus"></span>
+                    <!-- /ko -->
+                    <!-- ko if: value_opinion <= 5 -->
+                    <span class="rating minus"></span>
+                    <!-- /ko -->
+                    <span class="product-reviews__review-seller" data-bind="text: name_user"></span>
+                    <!--<span class="product-reviews__review-date">18 июня 2015 г.</span>-->
+                </div>
+                <div class="product-reviews__review-body">
+                    <p data-bind="text: desc_opinion"></p>
+                </div>
+            </article>
+            <!-- /ko -->
+        </div>
+        <!-- /ko -->
+        <!-- /product-reviews -->
+    </div>
+    <!-- /product-store -->
+</script>
+
+<script id="goodsGalleryBlockTmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="product-info__img">
+        <a href="javascript:void(0);">
+            <span class="product-info__img-fon">
+                <img src="" data-bind="attr: {src: main.routeBigImages, title: main.chortName, id : main.cssToCart }">
+            </span>
+        </a>
+    </div>
+    <!-- ko if: $parent.ShowGallery() -->
+    <div class="product-info__img-mob">
+        <!-- ko foreach: gallery -->
+        <a href="javascript:void(0);">
+            <span class="img-fon">
+                <img src="" data-bind="attr: {src: image, title: title }">
+            </span>
+        </a>
+        <!-- /ko -->
+    </div>
+    <!-- /ko -->
+</script>
+
+<script id="goodsPriceInfoBlockTmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="product-sell">
+        <div class="product-sell__sell">
+            <div class="product-sell__cost price_item">
+                <span class="price__number" data-bind="text: blocks.main.sellCost"></span>
+                <span class="price__thinsp">&nbsp;</span>
+                <span class="price__rubl">руб.</span>
+            </div>
+            <!--<div class="product-sell__partner">-->
+                <!--Партнёрам: <span class="price__number">400.00</span>-->
+                <!--<span class="price__thinsp">&nbsp;</span>-->
+                <!--<span class="price__rubl">руб.</span> - <a href="javascript:void(0);" class="product-sell__partner-link">как заработать</a>-->
+            <!--</div>-->
+            <div class="product-sell__rules" data-bind="css: {'error': blocks.main.errorRules}">
+                <input class="product-sell__rules-input hidden i-checkbox" id="product-sell__rules-input" type="checkbox" data-bind="attr: {id: blocks.main.cssCheckboxRules}">
+                <label for="product-sell__rules-input" data-bind="click: blocks.main.ClickRules">C <a href="javascript:void(0);" class="product-sell__rules-link">«Правилами покупки товаров»</a> ознакомлен и согласен</label>
+            </div>
+
+            <!-- ko ifnot: blocks.main.disableBuyButton -->
+            <div class="product-sell__buttons">
+                <!-- ko if: blocks.main.showBuy -->
+                <a href="javascript:void(0);" class="btn product-sell__bay-button" data-bind="click: blocks.main.Buy">Купить</a>
+                <!-- /ko -->
+                <!-- ko if: blocks.main.showAddToCart -->
+                <a href="" class="btn product-sell__cart-button i-cart-bl" data-bind="click: blocks.main.AddToCart">В корзину</a>
+                <!-- /ko -->
+            </div>
+            <!-- /ko -->
+            <!-- ko if: blocks.main.disableBuyButton -->
+            <div class="product-sell__buttons">
+                <!-- ko if: blocks.main.showBuy -->
+                <a href="javascript:void(0);" class="btn product-sell__bay-button" data-bind="click: blocks.main.SetErrorRules">Купить</a>
+                <!-- /ko -->
+                <!-- ko if: blocks.main.showAddToCart -->
+                <a href="" class="btn product-sell__cart-button i-cart-bl" data-bind="click: blocks.main.SetErrorRules">В корзину</a>
+                <!-- /ko -->
+            </div>
+            <!-- /ko -->
+        </div>
+        <div class="product-sell__discont">
+            <div class="product-sell__discont-head">Узнайте размер скидки</div>
+            <form class="product-sell__discont-form" action="">
+                <input type="e-mail" placeholder="Электронная почта" class="product-sell__discont-input" data-bind="value: blocks.main.userEmail"><button type="submit" class="product-sell__discont-btn" data-bind="click: blocks.main.ClickDiscountQuery">Узнать</button>
+            </form>
+        </div>
+    </div>
+</script>
+
+<script id="goodsDescriptionBlockTmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="product-desc">
+        <div class="product-desc__title"><span>Описание товара</span></div>
+        <!-- ko if: ShowGallery() -->
+        <div class="product-desc__img">
+            <!-- ko foreach: blocks.gallery -->
+            <a href="javascript:void(0);">
+                <span class="img-fon">
+                    <img src="" data-bind="attr: {src: image, title: title }">
+                </span>
+            </a>
+            <!-- /ko -->
+        </div>
+        <!-- /ko -->
+        <div class="product-desc__desc" data-bind="html:blocks.main.description"></div>
+    </div>
+</script>

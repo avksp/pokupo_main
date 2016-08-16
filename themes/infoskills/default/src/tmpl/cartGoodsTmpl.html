@@ -1,0 +1,111 @@
+
+<script id="emptyCartGoodsTmpl" type="text/html">
+  <!-- version 1.0-->
+  <h1 class="title_page_theme">Корзина</h1>
+  <!-- cart store-->
+  <div class="cart_store">
+    <div class="cart-container">
+      <h3>В корзине нет ни одного товара.</h3>
+      <p><a href="#" onclick="Routing.SetHash('default', 'Домашняя', {});">На главную</a></p>
+    </div>
+  </div>
+</script>
+
+<script id="cartGoodsTmpl" type="text/html">
+  <!-- version 1.0-->
+  <!-- title -->
+  <h1 class="title_page_theme">Корзина</h1>
+    <!-- cart store-->
+    <div class="cart_store">
+      <!-- cart -->
+      <div class="cart-container">
+        <!-- ko template: { name: 'HeaderBlockTmpl' }--><!-- /ko -->
+        <div class="cart-body">
+          <!-- ko foreach: sellerBlock -->
+              <div class="product-info__seller i-seller"><span>Продавец </span><span class="product-info__seller-stat on">online</span>
+                <a href="javascript:void(0);" data-bind="attr: {href: sellerInfo.shop.site_shop}" class="product-info__seller-name">
+                  <span data-bind="text: sellerInfo.shop.name_shop"></span>
+                </a>
+              </div>
+              <!-- ko foreach: goods -->
+                  <!-- ko template: { name: 'GoodsBlockTmpl' }--><!-- /ko -->
+              <!-- /ko -->
+              <!-- ko template: { name: 'FooterBlockTmpl' }--><!-- /ko -->
+          <!-- /ko -->
+        </div>
+      </div>
+      <!-- /cart -->
+    </div>
+    <!-- /cart store -->
+</script>
+
+<script id="HeaderBlockTmpl" type="text/html">
+  <!-- version 1.0-->
+  <div class="cart-head">
+    <span class="cart-head__img"></span>
+    <span class="cart-head__title">Товар</span>
+    <span class="cart-head__added">Добавлено</span>
+    <span class="cart-head__price">Цена</span>
+    <span class="cart-head__bookmarks">Отложить</span>
+    <span class="cart-head__drop">Удалить</span>
+  </div>
+</script>
+
+<script id="GoodsBlockTmpl" type="text/html">
+  <!-- version 1.0-->
+  <div class="cart-item">
+    <div class="cart-item__img">
+      <!-- ko if: routeImages -->
+              <span class="img-fon">
+                <img src="" data-bind="attr: {src: routeImages, title: fullName }"/>
+              </span>
+      <!-- /ko -->
+    </div>
+    <div class="cart-item__title"><span data-bind="text: fullName"></span></div>
+    <div class="cart-item__added"><span class="cart-item__added-date">11.03.2016</span></div>
+    <div class="cart-item__price">
+      <span class="price__number" data-bind="text: sellEndCost"></span>
+      <span class="price__thinsp">&nbsp;</span>
+      <span class="price__rubl">руб.</span>
+    </div>
+    <div class="cart-item__bookmarks">
+      <!-- ko if: IsFavorite -->
+      <a href="javascript:void(0);" class="cart-item__bookmarks-button i-book" data-bind="click: ClickFavorites">Товар в закладках</a>
+      <!-- /ko -->
+      <!-- ko ifnot: IsFavorite -->
+      <a href="javascript:void(0);" class="cart-item__bookmarks-button i-book" data-bind="click: AddFavorites">В закладки</a>
+      <!-- /ko -->
+    </div>
+    <div class="cart-item__drop"><a href="javascript:void(0);" class="i-drop" data-bind="click: ClickRemove"></a></div>
+  </div>
+</script>
+
+<script id="FooterBlockTmpl" type="text/html">
+  <!-- version 1.0-->
+  <div class="cart-footer">
+    <div class="cart-footer__total">
+      <span>Итого </span>
+      <span class="num_product" data-bind="text: goods().length"></span>
+      <span>
+        <!-- ko if: goods().length == 1 -->
+            товар
+        <!-- /ko -->
+
+        <!-- ko if: goods().length > 1 && goods().length < 5 -->
+            товара
+        <!-- /ko -->
+
+        <!-- ko if: goods().length > 4 -->
+            товаров
+        <!-- /ko -->
+         на сумму:
+      </span>
+    </div>
+    <div class="cart-footer__price">
+      <span class="price__number" data-bind="text: tatalForPayment"></span>
+      <span class="price__thinsp">&nbsp;</span>
+      <span class="price__rubl">руб.</span>
+    </div>
+    <a href="javascript:void(0);" class="btn cart-footer__bay-button" data-bind="click: ClickIssueOrder">Купить и скачать</a>
+  </div>
+</script>

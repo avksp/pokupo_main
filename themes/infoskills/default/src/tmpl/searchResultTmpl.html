@@ -1,0 +1,106 @@
+<script id="searchResultTileTmpl" type="text/html">
+    <!-- version 1.0 -->
+    <!-- version 1.0 -->
+    <!-- title -->
+        <h1 class="title_page_theme">
+            <!-- ko if: countGoods == 1 -->
+            Найден <!-- ko text: countGoods --><!-- /ko--> товар
+            <!-- /ko -->
+
+            <!-- ko if: countGoods > 1 && countGoods < 5 -->
+            Найдено <!-- ko text: countGoods --><!-- /ko--> товара
+            <!-- /ko -->
+
+            <!-- ko if: countGoods > 4 -->
+            Найдено <!-- ko text: countGoods --><!-- /ko--> товаров
+            <!-- /ko -->
+        </h1>
+
+        <!-- catalog-store -->
+        <div class="catalog-store">
+            <!-- ko foreach: content -->
+            <!-- ko foreach: str -->
+            <div class="catalog-item">
+                <div class="catalog-item__img">
+                    <a href=""
+                       data-bind="click: ClickGoods, attr: {id : cssTitleToCart, href: 'http://pokupo.ru/shop#/goods/id=' + id}">
+                        <!-- ko if: routeImage() -->
+                            <span class="img-fon">
+                                <img src="" title=""
+                                     data-bind="attr: {src: routeImage, title: chortName, id : cssToCart}">
+                            </span>
+                        <!-- /ko -->
+                        <span class="catalog-item__img-title" data-bind="text:chortName"></span>
+                    </a>
+                </div>
+                <div class="catalog-item__info">
+                    <div class="catalog-item__name">
+                        <a href="store-item.html"
+                           data-bind="click: ClickGoods, attr: {id : cssTitleToCart, href: 'http://pokupo.ru/shop#/goods/id=' + id}">
+                            <span data-bind="text:chortName"></span>
+                        </a>
+                    </div>
+                    <div class="catalog-item__cost price_item"><span class="price__number"
+                                                                     data-bind="text: sellCost"></span><span
+                            class="price__thinsp">&nbsp;</span><span class="price__rubl">руб.</span></div>
+                    <!-- ko if: $root.showCart -->
+                    <a href="javascript:void(0);" class="btn catalog-item__bay-button" data-bind="click: ClickBuy">Купить</a>
+                    <!-- /ko -->
+                    <a href="javascript:void(0);" class="catalog-item__bookmarks-button">В закладки</a>
+                </div>
+            </div>
+            <!-- /ko -->
+            <!-- /ko -->
+        </div>
+    <!-- /catalog-store -->
+    <!-- ko if: paging().length > 1 -->
+    <!-- ko template: {name: "contentPaginatetionTmpl"} -->
+    <!-- /ko --><!-- /ko -->
+</script>
+
+<script id="searchResultErrorTmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="product-rec">
+        <h1 class="title_page_theme">По вашему запросу товаров не найдено</h1>
+
+        <div class="catalog-store">
+            <p>Попробуйте изменить параметры поиска и попробуйте еще раз.</p>
+        </div>
+    </div>
+</script>
+
+<script id="searchResultTableTmpl" type="text/html">
+    <!-- version 1.0 -->
+</script>
+
+<script id="searchResultListTmpl" type="text/html">
+    <!-- version 1.0 -->
+</script>
+
+<script id="contentPaginatetionTmpl" type="text/html">
+    <!-- version 1.0-->
+    <div class="pagination_theme">
+        <ul class="pagination_list">
+            <!-- ko foreach: paging -->
+            <!-- ko if: current -->
+            <!-- ko if: title == '...' -->
+            <li class="pagination_list__item dots">...</li>
+            <!-- /ko -->
+            <!-- ko ifnot: title == '...' -->
+            <li class="pagination_list__item"><a href="javascript:void(0);" data-bind="text: title, click: ClickLinkPage"></a></li>
+            <!-- /ko -->
+            <!-- /ko -->
+            <!-- ko ifnot: current -->
+            <!-- ko if: cssLink() == "first" -->
+            <li class="pagination_list__item arrow-left"><a href="javascript:void(0);" data-bind="click: ClickLinkPage"></a></li>
+            <!-- /ko -->
+            <!-- ko if: cssLink() == "last" -->
+            <li class="pagination_list__item arrow-right"><a href="javascript:void(0);" data-bind="click: ClickLinkPage"></a></li>
+            <!-- /ko -->
+            <!-- ko if: cssLink() != "last" && cssLink() != "first" -->
+            <li class="pagination_list__item"><a href="javascript:void(0);" data-bind="text: title, click: ClickLinkPage"></a></li>
+            <!-- /ko -->
+            <!-- /ko -->
+        </ul>
+    </div>
+</script>

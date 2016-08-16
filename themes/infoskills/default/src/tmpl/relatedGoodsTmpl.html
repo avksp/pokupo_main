@@ -1,0 +1,35 @@
+<script id="relatedGoodsTileTmpl" type="text/html">
+  <!-- version 1.0 -->
+
+  <!-- ko if: countGoods > 0 -->
+    <h3>Рекомендуем также</h3>
+    <!-- ko foreach: content -->
+        <div class="catalog-item">
+          <div class="catalog-item__img">
+            <a href="" data-bind="click: ClickGoods, attr: {id : cssTitleToCart, href: 'http://pokupo.ru/shop#/goods/id=' + id}">
+              <span class="img-fon">
+                <!-- ko if: routeImage() -->
+                <img src="" title="" data-bind="attr: {src: routeImage(), title: chortName, id : cssToCart}">
+                <!-- / ko -->
+              </span>
+              <span class="catalog-item__img-title" data-bind="text: fullName"></span>
+            </a>
+          </div>
+          <div class="catalog-item__info">
+            <div class="catalog-item__name">
+              <a href="" data-bind="click: ClickGoods, attr: {id : cssTitleToCart, href: 'http://pokupo.ru/shop#/goods/id=' + id}">
+                <span data-bind="text: fullName"></span>
+              </a>
+            </div>
+            <div class="catalog-item__cost price_item">
+              <span class="price__number" data-bind="text: sellCost"></span>
+              <span class="price__thinsp">&nbsp;</span>
+              <span class="price__rubl">руб.</span>
+            </div>
+            <a href="javascript:void(0);" class="btn catalog-item__bay-button" data-bind="click: ClickBuy">Купить</a>
+            <a href="javascript:void(0);" class="catalog-item__bookmarks-button">В закладки</a>
+          </div>
+        </div>
+      <!-- /ko -->
+    <!-- /ko -->
+</script>

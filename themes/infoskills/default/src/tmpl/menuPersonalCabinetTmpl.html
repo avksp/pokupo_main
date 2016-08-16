@@ -1,0 +1,32 @@
+<script id="menuPersonalCabinetTmpl" type="text/html">
+    <!-- version 1.1 -->
+    <div class="profile_theme">
+        <!-- profile head -->
+        <div class="profile-head">
+            <div class="profile-head_name">
+                <span>Личный кабинет пользователя </span>
+                <span class="user-name" data-bind="text: username"></span>
+                <a href="javascript:void(0);" data-bind="click: ClickLogout">выйти</a>
+            </div>
+        </div>
+        <!-- /profile head -->
+        <!-- profile menu -->
+        <div class="profile-menu">
+            <ul class="profile-menu__list">
+                <li class="profile-menu__item">
+                    <a href="javascript:void(0);" data-bind="attr: {class: 'profile-menu__item-purchases ' + activePurchases()}, click: ClickPurchases">мои покупки</a>
+                </li>
+                <li class="profile-menu__item">
+                    <a href="javascript:void(0);" data-bind="attr: {class: 'profile-menu__item-cart ' + activeCart()}, click: ClickCart">корзина</a>
+                </li>
+                <li class="profile-menu__item">
+                    <a href="javascript:void(0);" data-bind="attr: {class: 'profile-menu__item-bookmarks ' + activeFavorites()}, click: ClickFavorites">закладки</a>
+                </li>
+                <li class="profile-menu__item">
+                    <a href="javascript:void(0);" data-bind="attr: {class: 'profile-menu__item-info ' + activeProfile()}, click: ClickProfile">личная информация</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /profile menu -->
+    </div>
+</script>
