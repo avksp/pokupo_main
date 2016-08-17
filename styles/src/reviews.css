@@ -1,3 +1,7 @@
+.client-reviews {
+  text-align: left;
+}
+
 .client-reviews__header {
   width: 560px;
   margin: auto;
@@ -19,8 +23,8 @@
 }
 
 .client-reviews__header h1 {
-  /* font-size: 45px;
-  font-weight: 300;  */
+  font-size: 45px;
+  font-weight: 300;  
   margin-bottom: 32px;
 }
 
@@ -114,7 +118,7 @@
 }
 
 .client-review__article-header h3 {
-  /* font-size: 18px; */
+  font-size: 18px; 
   font-weight: 700;
   margin-bottom: 2px;
 }
