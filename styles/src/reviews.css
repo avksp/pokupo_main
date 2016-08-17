@@ -1,0 +1,134 @@
+.client-reviews {
+  text-align: left;
+}
+
+.client-reviews__header {
+  width: 560px;
+  margin: auto;
+  text-align: center;
+}
+
+.client-reviews__header::before {
+  display: inline-block;
+  vertical-align: top;
+  content: '';
+  width: 185px;
+  height: 93px;
+  background-image: url(../../images/sprite.png);
+  background-repeat: no-repeat;
+  background-position: -101px -851px;
+  margin-top: 120px;
+  margin-left: 15px;
+  margin-bottom: 23px;
+}
+
+.client-reviews__header h1 {
+  font-size: 45px;
+  font-weight: 300;  
+  margin-bottom: 32px;
+}
+
+.client-reviews__header p {
+  margin-bottom: 105px;
+}
+
+.client-review {
+  position: relative;
+  display: table;
+  width: 788px;
+  min-height: 257px;  
+  background-color: #efece7;
+  border-radius: 20px;
+  margin-bottom: 90px;
+  padding: 53px 55px 50px 53px;
+}
+
+.client-review:last-child {
+  margin-bottom: 105px;
+}
+
+.client-review:nth-child(even) {
+  float: right;
+}
+
+.client-review:nth-child(odd) {
+  float: left;
+}
+
+.client-review::before {
+  position: absolute;
+  display: inline-block;
+  vertical-align: top;
+  content: '';
+  width: 160px;
+  height: 160px;
+  background-repeat: no-repeat;
+}
+
+.client-review:nth-child(even)::before {
+  left: -189px;
+  top: -60px;
+}
+
+.client-review:nth-child(odd)::before {
+  left: 819px;
+  top: -61px;
+}
+
+.client-review--1::before {
+  background-image: url(../../images/pages/reviews/shl_logo.png);
+}
+
+.client-review--2::before {
+  background-image: url(../../images/pages/reviews/bruco_logo.png);
+}
+
+.client-review--3::before {
+  background-image: url(../../images/pages/reviews/club_logo.png);
+}
+
+.client-review::after {
+  position: absolute;
+  display: inline-block;
+  vertical-align: top;
+  content: '';
+  background-image: url(../../images/sprite.png);
+  background-repeat: no-repeat;
+}
+
+.client-review:nth-child(even)::after {
+  left: -113px;
+  top: 109px;
+  width: 114px;
+  height: 97px;
+  background-position: -299px -850px;
+}
+
+.client-review:nth-child(odd)::after {
+  left: 787px;
+  top: 105px;
+  width: 115px;
+  height: 103px;
+  background-position: -425px -847px;
+}
+
+.client-review__article {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.client-review__article-header h3 {
+  font-size: 18px; 
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.client-review__article-header a {
+  font-style: italic;
+  text-decoration: underline;
+  color: #177a93;
+}
+
+.client-review__article p {
+   margin-top: 20px;
+}
