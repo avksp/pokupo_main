@@ -3,9 +3,10 @@ var AnimateStandalonePayment = function () {
     _$('html').addClass('pkp_html');
     _$('body').addClass('pkp_body');
 
-    _$(".j-pkp-select").selecter({
-        label: "По умолчанию"
-    });
+    if(_$.isFunction('selecter'))
+        _$(".j-pkp-select").selecter({
+            label: "По умолчанию"
+        });
 
     /*scrollbar*/
     _$(".j-scroll").mCustomScrollbar();

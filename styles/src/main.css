@@ -14099,6 +14099,27 @@ body .ui-tooltip {
 	border-radius: 8px;
 }
 
+@media only screen and (min-width: 641px) and (max-width: 960px) {
+
+	.b-catalog__items.titles .b-item__picture {
+		width: 16%;
+	}
+
+	.b-catalog__items.titles .b-item .responsive-holder {
+		width: 79%;
+	}
+	
+	.b-catalog__items.titles .b-item__order-button {
+		margin-top: 0; 
+		width: 150px;
+		position: absolute;
+		right: 3%;
+		top: 64px;
+	}	
+
+}
+
+
 /*!
  * Fotorama 4.5.2 | http://fotorama.io/license/
  */

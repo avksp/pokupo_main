@@ -1006,6 +1006,14 @@ a.product-info__question-button{
 	font-size: 13px;	
 }
 
+.product-sell__discont-res{
+	line-height: 1.4em;
+}
+
+.product-sell__discont-res span{
+	font-weight: bold;
+}
+
 /* ------ Product description ------ */
 
 .product-desc__title{

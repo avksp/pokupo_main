@@ -436,6 +436,11 @@
         </table><!-- /ko -->
         <div style="margin-bottom: 60px;" class="comment">
           <textarea name="comment" value="" placeholder="Примечания к заказу" width="100%" rows="2" data-bind="value: commentBuyer"></textarea>
+          <!-- ko if: errorCommentBuyer() -->
+          <div class="error__message">
+            <p data-bind="text: errorCommentBuyer"></p>
+          </div>
+          <!-- /ko -->
         </div>
       </div>
     </div>

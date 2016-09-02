@@ -24,8 +24,10 @@
                             </div>
                             <div class="catalog-item__cost price_item"><span class="price__number" data-bind="text: sellCost"></span><span
                                     class="price__thinsp">&nbsp;</span><span class="price__rubl">руб.</span></div>
-                            <a href="javascript:void(0);" class="btn catalog-item__bay-button">Скачать</a>
-                            <a href="javascript:void(0);" class="catalog-item__open-button i-open" data-bind="click: ClickItem">Открыть</a>
+                            <!-- ko if: isEgoods -->
+                            <a href="javascript:void(0);" class="btn catalog-item__bay-button" data-bind="click: ClickDownload">Скачать</a>
+                            <!-- /ko -->
+                            <a href="javascript:void(0);" class="catalog-item__open-button i-open" data-bind="click: ClickOrder">Открыть</a>
                         </div>
                     </div>
                 <!-- /ko -->

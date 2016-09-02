@@ -2532,15 +2532,20 @@ section.subheader_pkp {
 	vertical-align: middle;
 }
 
+.subheader__cell:nth-child(2) {
+	display: table-cell;
+	vertical-align: middle;
+}
+
 section.subheader_pkp .logo {
 	padding-top: 25px;
 	line-height: 24px;
  	margin-left: 30px;
-	max-width: 700px;
 	text-align: left;
  	float: left;
  	height: auto;
  	text-decoration: none;
+ 	width: 60%
 }
 
 section.subheader_pkp .logo .logo__title {
@@ -2548,10 +2553,9 @@ section.subheader_pkp .logo .logo__title {
  	vertical-align: middle;
  	font-size: 24px;
  	text-transform: uppercase;
-	float: left;
-	width: 550px;
 	padding-top: 0;
 	white-space: normal;
+	word-wrap: break-word;
 }
 
 section.subheader_pkp .logo .logo__title br {
@@ -5196,6 +5200,10 @@ h2.tagline {
 	padding-right: 30px;
 }
 
+.popup.join .input-holder{
+	padding: 0;
+}
+
 .popup.review-form {
 	text-align: left;
 }
@@ -7435,8 +7443,8 @@ h1.b-catalog__title {
 }
 
 .b-catalog__item {
-	display: inline-block;
-	vertical-align: top;
+    display: inline-block;
+    vertical-align: top;
 }
 
 #carouselBlockId .b-catalog__item {
@@ -7445,10 +7453,11 @@ h1.b-catalog__title {
 
 
 .b-catalog__items.cards .b-item {
-	width: 242px;
-	text-align: center;
-	padding: 0 5px;
-	margin-bottom: 60px;
+    width: 242px;
+    text-align: center;
+    padding: 0 5px;
+    margin-bottom: 60px;
+    display: inline-block;
 }
 
 #carouselBlockId .b-catalog__items.cards .b-item{
@@ -7541,28 +7550,31 @@ h1.b-catalog__title {
 .b-catalog__items.magazine .b-item__picture,
 .b-catalog__items.magazine .b-item__order-button,
 .b-catalog__items.magazine .b-item .responsive-holder {
-	position: relative;
-	float: left;
-	margin: 0 -100% 0 0;
 }
 
 .b-catalog__items.magazine .b-item__picture {
-	width: 240px;
-	height: 220px;
-	line-height: 220px;
-	margin: -30px -100% -30px 0;
-	left: 0;
-	background-image: none;
+    width: 240px;
+    height: 220px;
+    line-height: 220px;
+    margin: 0;
+    left: auto;
+    background-image: none;
+    display: inline-block;
+    vertical-align: top;
 }
 
 .b-catalog__items.magazine .b-item .responsive-holder {
-	width: 560px;
-	left: 265px;
-	padding-right: 315px;
+    display: inline-block;
+    width: 51%;
+    margin-right: 2%;
+    margin-left: 2%;
 }
 
 .b-catalog__items.magazine .b-item__order-button {
-	left: 520px;
+    display: inline-block;
+    text-align: right;
+    width: 189px;
+    vertical-align: middle;
 }
 
 .b-catalog__items.magazine .b-item__order-button .btn {
@@ -7578,7 +7590,8 @@ h1.b-catalog__title {
 }
 
 .b-catalog__items.titles .b-catalog__item {
-	margin-bottom: 40px;
+    margin-bottom: 40px;
+    display: block;
 }
 
 .b-catalog__items.titles .b-catalog__item:last-child {
@@ -7587,11 +7600,15 @@ h1.b-catalog__title {
 
 .b-catalog__items.titles .b-item {
 	width: 100%;
-	min-width: 726px;
 }
 
 .b-catalog__items.titles .b-item .responsive-holder {
-	position: relative;
+    position: relative;
+    display: inline-block;
+    width: 60%;
+    margin-right: 2%;
+    margin-left: 2%;
+	vertical-align: top;  
 }
 
 .b-catalog__items.titles .b-item__title {
@@ -7607,37 +7624,39 @@ h1.b-catalog__title {
 .b-catalog__items.titles .b-item__description,
 .b-catalog__items.titles .b-item__price,
 .b-catalog__items.titles .b-item__order-button {
-	position: relative;
-	float: left;
-	margin: 0 -100% 0 0;
 }
 
 .b-catalog__items.titles .b-item__picture {
-	width: 160px;
-	height: 140px;
-	line-height: 190px;
-	margin: -25px -100% -25px 0;
-	left: 0;
-	background-image: none;
+    width: 160px;
+    height: 140px;
+    line-height: 140px;
+    margin: 0;
+    left: 0;
+    background-image: none;
+    display: inline-block;
+    vertical-align: top;
 }
 
 .b-catalog__items.titles .b-item__description {
-	width: 228px;
-	left: 180px;
+    width: 70%;
+    display: inline-block;
+    vertical-align: top; 
+    padding-right: 5%; 
 }
 
 .b-catalog__items.titles .b-item__price {
-	width: 120px;
-	left: 408px;
-	display: table;
-	min-height: 120px;
-	height: 120px;
+    width: 30%;
+    display: inline-block;
+    min-height: 65px;
+    height: 65px;
+    text-align: right;
+    vertical-align: top;
 }
 
 .b-catalog__items.titles .b-item__price > .b-price {
-	display: table-cell;
 	vertical-align: middle;
-	height: 100%;
+	display: block;
+    height: 100%;
 }
 
 .b-catalog__items.titles .b-item__price > .b-price br {
@@ -7650,9 +7669,10 @@ h1.b-catalog__title {
 }
 
 .b-catalog__items.titles .b-item__order-button {
-	left: 558px;
-	line-height: 120px;
-	height: 120px;
+    height: 53px;
+    display: inline-block;
+    margin-top: -10px;
+    width: 16%; 
 }
 
 .b-catalog__items.titles .b-item__order-button .btn {
@@ -7677,6 +7697,9 @@ h1.b-catalog__title {
 
 .nosidebar .b-catalog {
 	margin-left: 0;
+    overflow: hidden;
+    padding-left: 5px;
+    padding-right: 5px;	
 }
 
 .nosidebar .b-catalog__controls {
@@ -10042,12 +10065,9 @@ section.advanced-search .inline-input--small {
 }
 
 .b-catalog__items.titles .b-item__description {
-	width: 260px;
 }
 
 .b-catalog__items.titles .b-item__price {
-	float: none;
-	left: 440px;
 	font-size: 24px;
 }
 
@@ -10056,11 +10076,7 @@ section.advanced-search .inline-input--small {
 }
 
 .b-catalog__items.titles .b-item__order-button {
-	width: 100px;
-	float: none;
-	left: 440px;
-	text-align: left;
-	padding: 10px 0 0;
+
 }
 
 .b-catalog__items.titles .b-item__order-button .btn {
@@ -10519,6 +10535,10 @@ section.header {
 .header_pkp .logo,
 .header .logo {
 	margin: 0;
+}
+
+section.subheader_pkp .logo .logo__title {
+	display: none;
 }
 
 .header_pkp .menu_pkp .submenu_pkp,
@@ -11025,22 +11045,23 @@ section.catalog-banner {
 }
 
 .b-catalog__controls-item {
-	float: none;
-	margin-left: 0;
-	margin-bottom: 10px;
-	text-align: right;
-	width: 49%;
-	display: inline-block;
+    float: none;
+    margin-left: 0;
+    margin-bottom: 10px;
+    text-align: right;
+    width: 48%;
+    display: inline-block;
+	margin-top: 20px;
 }
 
 .b-catalog__controls-item:nth-of-type(1) {
-	margin-left: 0;
-	float: none;
-	width: 100%;
+    margin-left: 0;
+    float: none;
+    width: 51%;
+    text-align: left;
 }
 
 .b-catalog__items .b-item.with_popover > div {
-	display: none;
 }
 
 .b-catalog__items .b-item.with_popover .b-item__popover {
@@ -11108,17 +11129,25 @@ section.catalog-banner {
 }
 
 .b-catalog__items.titles .b-item {
-	width: auto;
-	min-width: 468px;
+}
+
+.b-catalog__items.titles .b-item__picture {
+	width: 98%;
+	display: block;
+	text-align: left;
+	margin-left: 2%;
+	margin-bottom: 10px;
 }
 
 .b-catalog__items.titles .b-item .responsive-holder {
-	float: none;
-	text-align: left;
+	width: 100%;
+	margin-right: 0;
+	margin-left: 0;
+	padding-left: 2%;
+	padding-right: 2%;
 }
 
 .b-catalog__items.titles .b-item__description {
-	width: 180px;
 }
 
 .b-catalog__items.titles .b-item__price {
@@ -11132,11 +11161,11 @@ section.catalog-banner {
 }
 
 .b-catalog__items.titles .b-item__order-button {
-	width: 100px;
-	float: none;
-	left: 360px;
-	text-align: left;
-	padding: 10px 0 0;
+	margin-top: 0; 
+	width: 150px;
+	position: absolute;
+	right: 3%;
+	top: 213px;
 }
 
 .b-catalog__items.titles .b-item__order-button .btn {
@@ -11161,7 +11190,8 @@ section.catalog-banner {
 }
 
 .b-catalog__items.titles .b-catalog__item {
-	margin-bottom: 10px;
+	margin-bottom: 30px;
+	min-height:330px;
 }
 
 .nosidebar .b-catalog__quick-filter {
@@ -11401,6 +11431,12 @@ section.catalog-banner {
 	margin-top: 30px;
 }
 
+/* Progress bar */
+
+.bar{
+	max-height: 2px!important;
+}
+
 /* Правка меню */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait), screen and (min-width: 641px) and (max-width: 993px) {
 
@@ -11449,6 +11485,29 @@ label.search-btn-label {
 }
 
 }
+
+
+@media only screen and (min-width: 641px) and (max-width: 960px) {
+
+	.b-catalog__items.titles .b-item__picture {
+		width: 16%;
+	}
+
+	.b-catalog__items.titles .b-item .responsive-holder {
+		width: 79%;
+	}
+	
+	.b-catalog__items.titles .b-item__order-button {
+		margin-top: 0; 
+		width: 150px;
+		position: absolute;
+		right: 3%;
+		top: 64px;
+	}	
+
+}
+
+
 
 /*! jQuery UI - v1.10.2 - 2013-04-23
 * http://jqueryui.com
@@ -12630,6 +12689,23 @@ body .ui-tooltip {
 	font-family:'Open Sans', sans-serif;
 	text-shadow: none;
 	text-align: center;
+}
+
+
+.back-to-top{
+	display: none;
+	position: fixed;
+	bottom: 40px;
+	right: 1%;
+	z-index: 50;
+}
+
+.back-to-top:after{
+	width:24px;
+	height:13px;
+	content: "";
+	display: inline-block;
+	margin-left: 5px;
 }
 
 /*!

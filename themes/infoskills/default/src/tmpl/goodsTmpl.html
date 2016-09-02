@@ -163,6 +163,20 @@
             <form class="product-sell__discont-form" action="">
                 <input type="e-mail" placeholder="Электронная почта" class="product-sell__discont-input" data-bind="value: blocks.main.userEmail"><button type="submit" class="product-sell__discont-btn" data-bind="click: blocks.main.ClickDiscountQuery">Узнать</button>
             </form>
+            <!-- ko if: blocks.main.showDiscount -->
+                <!-- ko foreach: blocks.main.selfDiscount() -->
+                <div class="product-sell__discont-res">
+                    <!-- ko if: $data.name_discount --><!-- ko text: $data.name_discount --><!-- /ko -->. <!-- /ko -->
+                    <!-- ko if: $data.desc_discount --><!-- ko text: $data.desc_discount --><!-- /ko -->. <!-- /ko -->
+                    Размер скидки составляет
+                    <span class="product-sell__discont-disc">
+                            <!-- ko text: $data.discount --><!-- /ko -->
+                        <!-- ko if: $data.type_discount == 'percent' -->%<!-- /ko -->
+                        <!-- ko if: $data.type_discount == 'absolute' -->руб.<!-- /ko -->
+                        </span>
+                </div>
+                <!-- /ko -->
+            <!-- /ko -->
         </div>
     </div>
 </script>

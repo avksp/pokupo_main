@@ -4,6 +4,9 @@ module.exports = {
             'scripts/main.min.js': [
                 'scripts/main.js'
             ],
+            'themes/default/default/main.js': [
+                'themes/default/default/src/js/custom.js'
+            ],
             'themes/infoskills/default/main.js': [
                 // 'themes/infoskills/default/src/js/main.js',
                 'themes/infoskills/default/src/js/custom.js'

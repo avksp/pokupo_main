@@ -1619,6 +1619,11 @@ p.user-menu__name{
 	vertical-align: middle;
 }
 
+.product-sell__discont-res{
+	margin-top: 20px;
+	/*display: none;*/
+}
+
 .product-seller{
 	display: none;
 }

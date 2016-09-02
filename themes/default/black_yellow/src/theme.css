@@ -2539,6 +2539,24 @@ a.with-icon.with-icon--file:before {
     border-top: 1px solid #e5e5e5;
 }
 
+h3.b-modal-info__icon.icon-success:before{
+    background-image: url("/themes/default/black_yellow/images/sprite.png");
+    background-position: -329px -241px;	
+}
+
+h3.b-modal-info__icon.icon-error + p:before{
+    background-image: url("/themes/default/black_yellow/images/sprite.png");
+    background-position: -363px -241px;
+}
+
+#pokupoModalMessage #modal-success .modal-content{
+	background-color: #EFEBE7;
+}
+
+#pokupoModalMessage #modal-error .modal-content{
+	background-color: #FFD1D1;
+}
+
 /* Fade */
 .fade {
     opacity: 0;
